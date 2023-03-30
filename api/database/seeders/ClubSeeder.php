@@ -16,7 +16,6 @@ class ClubSeeder extends Seeder
     {
         Club::factory()
             ->count(16)
-            ->hasPlayers(23)
             ->create();
     }
 }
