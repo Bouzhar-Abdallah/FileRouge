@@ -58,10 +58,10 @@ class EventPosteSeeder extends Seeder
                 'Goalkeeper' => 6,
             ],
             'clean-sheet' => [
-                'Forward' => 4,
+                'Forward' => 3,
                 'Midfielder' => 4,
-                'Defender' => 4,
-                'Goalkeeper' => 4,
+                'Defender' => 5,
+                'Goalkeeper' => 6,
             ],
             'assist' => [
                 'Forward' => 3,
@@ -70,10 +70,10 @@ class EventPosteSeeder extends Seeder
                 'Goalkeeper' => 3,
             ],
             'penalty-missed' => [
-                'Forward' => -2,
-                'Midfielder' => -2,
-                'Defender' => -2,
-                'Goalkeeper' => -2,
+                'Forward' => -3,
+                'Midfielder' => -3,
+                'Defender' => -3,
+                'Goalkeeper' => -3,
             ],
             'penalty-saved' => [
                 'Forward' => 5,
