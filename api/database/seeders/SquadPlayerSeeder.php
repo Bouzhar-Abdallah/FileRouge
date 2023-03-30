@@ -35,11 +35,8 @@ class SquadPlayerSeeder extends Seeder
             //select random 4 players with poste name = 'Forward'
             $forwards = $players->where('poste.name', 'Forward')->random(4);
 
-
-
             // Merge all selected players into a single collection
             $selectedPlayers = $goalkeepers->merge($defenders)->merge($midfielders)->merge($forwards);
-           
 
             // Attach the 16 selected players to the current squad
             $squad->players()->attach($selectedPlayers->pluck('id')->toArray());
