@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             EventSeeder::class,
             EventPosteSeeder::class,
-
+            SquadPlayerSeeder::class,
         ]);
     }
 }
