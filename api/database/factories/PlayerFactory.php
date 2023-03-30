@@ -21,8 +21,6 @@ class PlayerFactory extends Factory
         return [
             'name' => fake()->name(),
             'price' => fake()->numberBetween(50,1000),
-            'poste_id' => Poste::inRandomOrder()->first()->id,
-            'club_id' => Club::inRandomOrder()->first()->id,
         ];
     }
 }

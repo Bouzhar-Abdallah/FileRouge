@@ -34,6 +34,9 @@ class PlayerSeeder extends Seeder
                     case 'Forward':
                         $count = 6;
                         break;
+                    default:
+                        $count = 0;
+                        break;
                 }
                 Player::factory()
                     ->count($count)
@@ -43,6 +46,5 @@ class PlayerSeeder extends Seeder
                     ]);
             }
         }
-        
     }
 }
