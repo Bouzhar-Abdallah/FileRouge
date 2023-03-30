@@ -14,10 +14,14 @@ class DatabaseSeeder extends Seeder
     {
         
         $this->call([
-            PosteSeeder::class,
+            /* 
             ClubSeeder::class,
             PlayerSeeder::class,
-            UserSeeder::class,
+            UserSeeder::class, */
+            PosteSeeder::class,
+            EventSeeder::class,
+            EventPosteSeeder::class,
+
         ]);
     }
 }
