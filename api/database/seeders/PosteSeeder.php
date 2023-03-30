@@ -13,8 +13,12 @@ class PosteSeeder extends Seeder
      */
     public function run(): void
     {
-        Poste::factory()
-            ->count(12)
-            ->create();
+        $posteNames = ['Forward', 'Midfielder', 'Defender', 'Goalkeeper'];
+
+        foreach ($posteNames as $posteName) {
+            Poste::create([
+                'name' => $posteName,
+            ]);
+        }
     }
 }
