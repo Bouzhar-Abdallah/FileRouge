@@ -1,2 +1,3 @@
 inside frontend
 npm create vite@latest
+dckr_pat_oFwMdI3K0mHkdTfK5WLwhwPWhB4
