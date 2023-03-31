@@ -6,15 +6,15 @@ services:
     ports:
       - "8090:80"
     volumes:
-      - ./my-laravel-app/nginx.conf:/etc/nginx/nginx.conf
-      - ./my-laravel-app/public:/var/www/html/public
+      - ./api/nginx.conf:/etc/nginx/nginx.conf
+      - ./api/public:/var/www/html/public
     depends_on:
       - app
 
   app:
-    build: ./my-laravel-app
+    build: ./api
     volumes:
-      - ./my-laravel-app:/var/www/html
+      - ./api:/var/www/html
 
   mysql:
     image: mysql
