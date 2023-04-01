@@ -14,8 +14,11 @@ class ClubSeeder extends Seeder
      */
     public function run(): void
     {
-        Club::factory()
-            ->count(16)
-            ->create();
+        $clubs = ["FAR Rabat", "Wydad", "FUS Rabat", "Raja Casablanca", "Safi", "Berkane", "Maghreb Fez", "Union Touarga", "Jeunesse Sportive Soualem", "Chabab Mohammedia", "Moghreb Tetouan", "Difaa El Jadidi", "Mouloudia Oujda", "Agadir", "Khouribga", "Tanger"];
+        foreach ($clubs as $club) {
+            Club::factory()->create([
+                'name' => $club,
+            ]);
+        }
     }
 }

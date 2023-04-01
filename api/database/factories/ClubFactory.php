@@ -16,9 +16,10 @@ class ClubFactory extends Factory
      */
     public function definition(): array
     {
-        $nameLength = fake()->numberBetween(5, 10);
+        
+        
+
         return [
-            'name' => 'club_' .fake()->text($nameLength),
             'primary_color' => fake()->rgbaCssColor(),
             'secondary_color' => fake()->rgbaCssColor(),
         ];
