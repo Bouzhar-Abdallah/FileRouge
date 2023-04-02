@@ -33,15 +33,13 @@ Route::get('/', function () {
         echo "Player {$player->id} has {$points} points in Game {$game->id}\n";
     }     */
 
-    $user = User::find(1); 
-    foreach ($user->selections as $weekSelection) {
+    $user = User::find(1);
+   /*  foreach ($user->selections as $weekSelection) {
         //echo "Week {$weekSelection->week->id}:\n";
-        /* foreach ($weekSelection->selectedPlayers as $selectedPlayer) {
-            echo "$selectedPlayer->player_id";
-        } */
-        dd($weekSelection->players);
-    }
-    /* $selectedPlayers = $user->weekSelection->selectedPlayers;
-    dd($selectedPlayers); */
+      
 
+        $players = $weekSelection->players;
+    } */
+    return response()->json($user->selections)->header('Content-Type', 'application/json');
+    
 });
