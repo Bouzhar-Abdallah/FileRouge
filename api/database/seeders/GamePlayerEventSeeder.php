@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Game;
 use App\Models\GamePlayerEvent;
 use App\Models\Player;
+use App\Models\Week;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +17,8 @@ class GamePlayerEventSeeder extends Seeder
      */
     public function run(): void
     {
-        $games = Game::all();
+        $week = Week::first();
+        $games = $week->games;
         $players = Player::all();
         $events = Event::all();
 
