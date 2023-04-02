@@ -22,7 +22,7 @@ class Game extends Model
     {
         return $this->hasMany(GamePlayerEvent::class);
     }
-    public function Players()
+    public function players()
     {
         return $this->homeClub->players->merge($this->awayClub->players);
     }
