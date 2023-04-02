@@ -1,3 +1,5 @@
-inside frontend
-npm create vite@latest
-dckr_pat_oFwMdI3K0mHkdTfK5WLwhwPWhB4
+Ports :
+    frontend    : 5176
+    api         : 8090
+    mysql       : 3306
+    phpmyadmin  : 8071
