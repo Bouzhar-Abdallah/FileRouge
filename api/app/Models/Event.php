@@ -13,4 +13,8 @@ class Event extends Model
     {
         return $this->hasMany(EventPoste::class);
     }
+    public function gamePlayerEvents()
+    {
+        return $this->hasMany(GamePlayerEvent::class);
+    }
 }

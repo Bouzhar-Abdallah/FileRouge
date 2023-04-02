@@ -20,12 +20,11 @@ class Game extends Model
     }
     public function playerEvents()
     {
-        return $this->belongsToMany(Player::class, 'game_player_events')
-            ->using(GamePlayerEvent::class)
-            ->withPivot('event_id');
+        return $this->hasMany(GamePlayerEvent::class);
     }
     public function Players()
     {
         return $this->homeClub->players->merge($this->awayClub->players);
     }
+    
 }

@@ -30,9 +30,9 @@ class Player extends Model
             'event_poste_id' // Local key on game_player_events table
         );
     }
-    public function gamePlayerEvents()
+    public function gameEvents()
     {
-        return $this->hasMany(GamePlayerEvent::class, 'player_id');
+        return $this->hasMany(GamePlayerEvent::class);
     }
     public function getPointsForGame($game_id)
     {
