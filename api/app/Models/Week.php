@@ -14,4 +14,8 @@ class Week extends Model
     {
         return $this->hasMany(Game::class);
     }
+    public function selections()
+    {
+        return $this->hasMany(UserSelection::class);
+    }
 }

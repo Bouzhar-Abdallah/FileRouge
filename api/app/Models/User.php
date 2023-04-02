@@ -46,4 +46,8 @@ class User extends Authenticatable
 
         return $this->hasOne(Squad::class);
     }
+    public function selections()
+    {
+        return $this->hasMany(UserSelection::class);
+    }
 }

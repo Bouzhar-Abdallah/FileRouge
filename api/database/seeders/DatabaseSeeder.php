@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             SquadPlayerSeeder::class,
             WeekSeeder::class,
             GameSeeder::class,
+            UserSelectionSeeder::class,
+            SelectedPlayersSeeder::class,
         ]);
     }
 }
