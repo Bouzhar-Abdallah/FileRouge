@@ -34,11 +34,12 @@ Route::get('/', function () {
     }     */
 
     $user = User::find(1); 
-    foreach ($user->weekSelection as $weekSelection) {
+    foreach ($user->selections as $weekSelection) {
         //echo "Week {$weekSelection->week->id}:\n";
-        foreach ($weekSelection->selectedPlayers as $selectedPlayer) {
+        /* foreach ($weekSelection->selectedPlayers as $selectedPlayer) {
             echo "$selectedPlayer->player_id";
-        }
+        } */
+        dd($weekSelection->players);
     }
     /* $selectedPlayers = $user->weekSelection->selectedPlayers;
     dd($selectedPlayers); */
