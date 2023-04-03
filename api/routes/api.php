@@ -21,10 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::apiResource('games', GameController::class);
-Route::middleware(['jwt'])->get('games', function () {
+Route::apiResource('games', GameController::class);
+/* Route::middleware(['jwt'])->get('games', function () {
     return response()->json(['games' => 'Your favorite games']);
-});
+}); */
 
 Route::get('generate-token/{id}', function ($id) {
     $user = User::find($id);

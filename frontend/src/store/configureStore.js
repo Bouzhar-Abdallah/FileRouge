@@ -1,9 +1,11 @@
 // src/store.js
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers';
+import fixturesReducer from '../features/fixtures/fixturesSlice';
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    fixtures: fixturesReducer,
+  },
 });
 
 export default store;

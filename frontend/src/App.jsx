@@ -1,20 +1,23 @@
 // src/App.js
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from './reducers/counter';
+
 import Test from './components/Navbar';
+import { getGames } from './features/fixtures/fixturesSlice';
 
 function App() {
-  const count = useSelector((state) => state.counter.count);
+  const { weeks, isLoading} = useSelector((state) => state.fixtures);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGames());
+  }, []);
 
   return (
     <div>
       <Test />
-      <h1>Counter: {count}</h1>
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
+      
     </div>
   );
 }
