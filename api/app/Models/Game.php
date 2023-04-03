@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,5 +27,11 @@ class Game extends Model
     {
         return $this->homeClub->players->merge($this->awayClub->players);
     }
-    
+
+
+    public static function getGamesGroupedByWeek()
+    {
+        $weeks = Week::with('games.homeClub', 'games.awayClub')->get();
+        return $weeks;
+    }
 }

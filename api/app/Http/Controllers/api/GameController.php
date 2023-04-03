@@ -4,7 +4,6 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Game;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -14,22 +13,8 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::with('homeClub', 'awayClub')
-            ->orderBy('week_id')
-            ->get();
-
-        // Group games by week_id
-        $groupedGames = $games->groupBy('week_id');
-
-        // Create an array of weeks with their games
-        $weeks = $groupedGames->map(function (Collection $games, $week_id) {
-            return [
-                'week' => $week_id,
-                'games' => $games->toArray(),
-            ];
-        })->values();
-
-        return response()->json($weeks);
+        $fixtures = game::getGamesGroupedByWeek();
+        return response()->json($fixtures);
     }
 
     /**

@@ -19,7 +19,7 @@ export const fixturesSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(getGames.fulfilled, (state, action) => {
-            console.log(action.payload);
+            //console.log(action.payload);
             state.isLoading = false;
             state.weeks = action.payload;
         })
