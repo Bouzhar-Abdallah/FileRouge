@@ -10,7 +10,7 @@ class StandingsController extends Controller
 {
     public function index()
     {
-        $standings = Standing::all();
+        $standings = Standing::with('club')->get();
         return response()->json($standings);
     }
 

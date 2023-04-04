@@ -10,7 +10,7 @@ class Standing extends Model
     use HasFactory;
     protected $table = 'standings';
     public $timestamps = false;
-
+    protected $primaryKey = 'club_id';
     protected $fillable = [
         'club_id',
         'club_name',
@@ -19,4 +19,9 @@ class Standing extends Model
         'goals_against',
         'goal_difference',
     ];
+
+    public function club()
+    {
+        return $this->belongsTo(Club::class, 'club_id');
+    }
 }

@@ -19,13 +19,13 @@ export default function Game({
         <h1 className="md:hidden" >{home_club.abreviation}</h1>
       </div>
       {is_played ? (
-        <div className="border-r-2 border-l-2 border-green-500 h-10 mx-2 px-4 flex items-center ">
+        <div className="border-r-2 border-l-2 border-green-500 h-10 mx-2 px-4 flex items-center">
             
-            <h1>{home_club_score}</h1>
+            <h1 className="">{home_club_score}</h1>
             <span className="mx-2 ">-</span>
-            <h1>{away_club_score}</h1>
+            <h1 className="">{away_club_score}</h1>
         </div>) : (
-        <div className="border-r-2 border-l-2 h-10 mx-2 px-4 flex items-center ">
+        <div className="border-r-2 border-l-2 h-10 mx-2 px-4 flex items-center text-xs text-gray-800">
             <h1>{hoursAndMinutes}</h1>
         </div>)
     }

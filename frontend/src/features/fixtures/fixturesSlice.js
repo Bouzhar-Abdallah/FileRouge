@@ -8,7 +8,6 @@ const initialState = {
 };
 
 export const getGames = createAsyncThunk("game", async () => {
-    console.log('getGames')
     const response = await fetch(url);
     const games = await response.json();
     return games;

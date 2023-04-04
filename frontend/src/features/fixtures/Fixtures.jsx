@@ -11,7 +11,7 @@ export default function Fixtures() {
 
   
   return isLoading ? (
-    <ul role="list" className="space-y-5 mx-20">
+    <ul role="list" className="space-y-5 md:mx-6">
       <li className="bg-white shadow overflow-hidden  sm:rounded-md">
         <div className="relative my-3">
           <div
@@ -35,7 +35,7 @@ export default function Fixtures() {
     </ul>
   ) : (
     <>
-      <ul role="list" className="space-y-5 mx-20">
+      <ul role="list" className="space-y-5 md:mx-6">
         {weeks.map((week) => {
           return (
             <li
