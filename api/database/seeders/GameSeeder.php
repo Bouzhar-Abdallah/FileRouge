@@ -48,7 +48,7 @@ class GameSeeder extends Seeder
         $clubs = Club::all();
         $numClubs = $clubs->count();
         $numWeeks = ($numClubs - 1) * 2;
-    
+        $hour = ['14:00', '15:00', '16:00', '18:00', '19:00', '20:00', '21:00'];
         if ($numClubs % 2 != 0) {
             $clubs->push(null);
             $numClubs += 1;
@@ -69,6 +69,7 @@ class GameSeeder extends Seeder
                     $week->games()->create([
                         'home_club_id' => $homeClub->id,
                         'away_club_id' => $awayClub->id,
+                        'time' => $hour[array_rand($hour)],
                     ]);
                 }
             }

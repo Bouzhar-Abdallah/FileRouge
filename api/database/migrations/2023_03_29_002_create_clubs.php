@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('clubs', function (Blueprint $table) {
             $table->string('name');
+            $table->string('abreviation');
             $table->string('primary_color');
             $table->string('secondary_color');
+            $table->string('icon_logo_url')->default('');
             $table->id();
         });
     }

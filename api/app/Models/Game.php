@@ -31,7 +31,9 @@ class Game extends Model
 
     public static function getGamesGroupedByWeek()
     {
-        $weeks = Week::with('games.homeClub', 'games.awayClub')->get();
+        $weeks = Week::with('games.homeClub', 'games.awayClub')
+        //->where('id', '1')
+        ->get();
         return $weeks;
     }
 }
