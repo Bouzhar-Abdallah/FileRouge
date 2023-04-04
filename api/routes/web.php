@@ -2,6 +2,7 @@
 
 use App\Models\Game;
 use App\Models\Player;
+use App\Models\Standing;
 use App\Models\User;
 use App\Models\Week;
 use Illuminate\Support\Facades\Route;
@@ -33,13 +34,14 @@ Route::get('/', function () {
         echo "Player {$player->id} has {$points} points in Game {$game->id}\n";
     }     */
 
-    $user = User::find(1);
+    $standings = Standing::all();
+    
    /*  foreach ($user->selections as $weekSelection) {
         //echo "Week {$weekSelection->week->id}:\n";
       
 
         $players = $weekSelection->players;
     } */
-    return response()->json($user->selections)->header('Content-Type', 'application/json');
+    return response()->json($standings)->header('Content-Type', 'application/json');
     
 });

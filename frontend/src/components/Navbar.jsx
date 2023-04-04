@@ -6,12 +6,12 @@ export default function Test() {
     <Navbar fluid={true} rounded={true}>
       <Navbar.Brand href="https://flowbite.com/">
         <img
-          src="https://flowbite.com/docs/images/logo.svg"
-          className="mr-3 h-6 sm:h-9"
+          src="https://res.cloudinary.com/doy8hfzvk/image/upload/v1680573228/botolapro-low-resolution-logo-color-on-transparent-background_jznqgy.png"
+          className="mr-3 h-8 sm:h-9"
           alt="Flowbite Logo"
         />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Flowbite
+        <span className="hidden self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          BotolaPro
         </span>
       </Navbar.Brand>
       <div className="flex md:order-2">

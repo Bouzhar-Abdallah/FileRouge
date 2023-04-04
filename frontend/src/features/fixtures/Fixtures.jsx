@@ -9,9 +9,7 @@ export default function Fixtures() {
   const { weeks, isLoading } = useSelector((state) => state.fixtures);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getGames());
-  }, []);
+  
   return isLoading ? (
     <ul role="list" className="space-y-5 mx-20">
       <li className="bg-white shadow overflow-hidden  sm:rounded-md">
