@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\GameController;
 use App\Http\Controllers\api\StandingsController;
+use App\Http\Controllers\AuthController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,12 +25,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('games', GameController::class);
 Route::apiResource('standings', StandingsController::class);
-/* Route::middleware(['jwt'])->get('games', function () {
-    return response()->json(['games' => 'Your favorite games']);
-}); */
 
-Route::get('generate-token/{id}', function ($id) {
+Route::group(['middleware' => ['auth:sanctum']],function(){
+    Route::apiResource('games', GameController::class);
+});
+Route::post('register', [AuthController::class,'register']);
+
+
+/* Route::get('generate-token/{id}', function ($id) {
     $user = User::find($id);
     
     return response()->json(['token' => $token]);
 });
+ */
