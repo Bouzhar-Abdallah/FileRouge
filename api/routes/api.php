@@ -5,7 +5,7 @@ use App\Http\Controllers\api\StandingsController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +30,6 @@ Route::apiResource('standings', StandingsController::class);
 
 Route::get('generate-token/{id}', function ($id) {
     $user = User::find($id);
-    $token = JWTAuth::fromUser($user);
+    
     return response()->json(['token' => $token]);
 });
