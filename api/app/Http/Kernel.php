@@ -46,11 +46,15 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ], */
         'api' => [
-            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            /* \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            // This middleware is part of the Laravel Sanctum package and ensures that requests to your API have state (i.e., session cookies are set) 
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             EnsureFrontendRequestsAreStateful::class,
-            StartSession::class,
+            StartSession::class, */
+            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            /* middleware is responsible for rate limiting your API requests. The :api part refers to the specific rate limiting configuration defined in your config/throttle.php file. */
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
