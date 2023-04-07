@@ -8,8 +8,11 @@ const initialState = {
 };
 
 export const getGames = createAsyncThunk("game", async () => {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+        credentials: 'include' 
+    });
     const games = await response.json();
+    console.log(games)
     return games;
 });
 
