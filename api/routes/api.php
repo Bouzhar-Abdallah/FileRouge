@@ -31,8 +31,20 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
+});
+
+// Routes that require the 'admin' role
+Route::middleware(['auth:api', 'role:admin'])->group(function () {
+    Route::get('admin', [AuthController::class, 'userProfile']);
+});
+
+// Routes that require the 'user' role
+Route::middleware(['auth:api', 'role:user'])->group(function () {
     Route::get('user', [AuthController::class, 'userProfile']);
 });
+
+
+
 
 Route::group(['middleware' => ['auth:sanctum']],function(){
     Route::apiResource('games', GameController::class);

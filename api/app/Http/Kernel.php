@@ -52,10 +52,14 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             EnsureFrontendRequestsAreStateful::class,
             StartSession::class, */
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             /* middleware is responsible for rate limiting your API requests. The :api part refers to the specific rate limiting configuration defined in your config/throttle.php file. */
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+    ];
+    protected $routeMiddleware = [
+        // ...
+        'role' => \App\Http\Middleware\CheckRole::class,
     ];
 
     /**
@@ -77,5 +81,4 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
-
 }
