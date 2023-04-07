@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->foreignId('week_id')->constrained();
+            //timestamps only hour and minute
+            $table->time('time')->default('18:00');
             $table->foreignId('home_club_id')->constrained('clubs');
             $table->foreignId('away_club_id')->constrained('clubs');
             $table->integer('home_club_score')->nullable();

@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\api\GameController;
+use App\Http\Controllers\api\StandingsController;
+use App\Http\Controllers\AuthController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +23,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::apiResource('games', GameController::class);
-Route::middleware(['jwt'])->get('games', function () {
-    return response()->json(['games' => 'Your favorite games']);
+Route::apiResource('games', GameController::class);
+Route::apiResource('standings', StandingsController::class);
+
+Route::group(['middleware' => ['auth:sanctum']],function(){
+    //Route::apiResource('games', GameController::class);
+    Route::post('logout', [AuthController::class,'logout']);
 });
 
-Route::get('generate-token/{id}', function ($id) {
+Route::post('login', [AuthController::class,'login']);
+/* Route::get('generate-token/{id}', function ($id) {
     $user = User::find($id);
-    $token = JWTAuth::fromUser($user);
+    
     return response()->json(['token' => $token]);
 });
+ */

@@ -3,18 +3,15 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Game;
+use App\Models\Standing;
 use Illuminate\Http\Request;
 
-class GameController extends Controller
+class StandingsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $fixtures = game::getGamesGroupedByWeek();
-        return response()->json($fixtures);
+        $standings = Standing::with('club')->get();
+        return response()->json($standings);
     }
 
     /**
