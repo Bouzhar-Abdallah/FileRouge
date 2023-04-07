@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         
         $this->call([
-            
+            RoleSeeder::class,
             PosteSeeder::class,
             ClubSeeder::class,
             PlayerSeeder::class,

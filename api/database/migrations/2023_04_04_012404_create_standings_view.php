@@ -12,6 +12,7 @@ return new class extends Migration
      */
     public function up()
     {
+        DB::statement('DROP VIEW IF EXISTS standings');
         DB::statement($this->createView());
     }
 
