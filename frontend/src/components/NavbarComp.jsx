@@ -1,6 +1,7 @@
 import React from "react";
 import { Avatar } from "flowbite-react";
 import { Dropdown, Navbar } from "flowbite-react";
+import { Link } from "react-router-dom";
 export default function NavbarComp() {
   return (
     <Navbar fluid={true} rounded={true}>
@@ -41,13 +42,15 @@ export default function NavbarComp() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/navbars" active={true}>
+        <Navbar.Link href="/" active={true}>
           Home
         </Navbar.Link>
-        <Navbar.Link href="/navbars">About</Navbar.Link>
-        <Navbar.Link href="/navbars">Services</Navbar.Link>
-        <Navbar.Link href="/navbars">Pricing</Navbar.Link>
-        <Navbar.Link href="/navbars">Contact</Navbar.Link>
+        <Link to="signup">signup</Link>
+        <Link to="login">Login</Link>
+        <Link to="standings">standings</Link>
+        <Link to="/">fixtures</Link>
+
+        
       </Navbar.Collapse>
     </Navbar>
   );

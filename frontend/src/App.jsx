@@ -1,4 +1,6 @@
 import NavbarComp from "./components/NavbarComp";
+import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup";
 import Fixtures from "./features/fixtures/Fixtures";
 import Standings from "./features/standings/Standings";
 import { Routes, Route } from "react-router-dom";
@@ -9,6 +11,8 @@ function App() {
       <Routes>
         <Route path="/standings" element={<Standings />} />
         <Route path="/" element={<Fixtures />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
