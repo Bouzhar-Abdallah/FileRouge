@@ -3,11 +3,14 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Spinner } from "flowbite-react";
 import Week from "../../components/games/Week";
+import { getFixtures } from "./fixturesSlice";
 
 export default function Fixtures() {
   const { weeks, isLoading } = useSelector((state) => state.fixtures);
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    dispatch(getFixtures());
+  }, []);
   //!isLoading && console.log(weeks);
   
   return isLoading ? (

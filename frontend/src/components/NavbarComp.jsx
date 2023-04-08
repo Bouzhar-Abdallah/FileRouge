@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar } from "flowbite-react";
 import { Dropdown, Navbar } from "flowbite-react";
-export default function Test() {
+export default function NavbarComp() {
   return (
     <Navbar fluid={true} rounded={true}>
       <Navbar.Brand href="https://flowbite.com/">

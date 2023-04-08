@@ -4,7 +4,10 @@ import { getStandings } from "./standingsSlice";
 import { Spinner } from "flowbite-react";
 export default function Standings() {
   const { standings, isLoading } = useSelector((state) => state.standing);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getStandings());
+  }, []);
   return isLoading ? (
     <ul role="list" className="space-y-5 md:mx-20">
       <li className="bg-white shadow overflow-hidden  sm:rounded-md">
