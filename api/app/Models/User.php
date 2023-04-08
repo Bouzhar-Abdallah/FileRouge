@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 
 
-class User extends Authenticatable 
+
+class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use /* HasApiTokens, */ HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -43,7 +46,13 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+
+     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
     public function getJWTIdentifier()
@@ -55,7 +64,10 @@ class User extends Authenticatable
     {
         return [];
     }
-    
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
     public function Squad(){
 
         return $this->hasOne(Squad::class);

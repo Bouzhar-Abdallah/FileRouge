@@ -14,7 +14,9 @@ class UserSelectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::all();
+        $users = User::whereHas('role', function ($query) {
+            $query->where('name', 'user');
+        })->get();
         $weeks = Week::all();
 
         foreach ($users as $user) {
