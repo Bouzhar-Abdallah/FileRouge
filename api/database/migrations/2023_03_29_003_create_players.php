@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->string('name');
-            //$table->unsignedBigInteger('poste_id');
-            //$table->foreign('poste_id')->references('id')->on('postes');
             $table->foreignId('poste_id')->constrained()->onUpdate('cascade');
             $table->foreignId('club_id')->constrained()->onUpdate('cascade');
             $table->unsignedInteger('price')->nullable(false);

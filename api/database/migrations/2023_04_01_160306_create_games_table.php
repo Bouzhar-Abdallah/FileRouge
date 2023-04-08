@@ -18,8 +18,6 @@ return new class extends Migration
             $table->time('time')->default('18:00');
             $table->foreignId('home_club_id')->constrained('clubs');
             $table->foreignId('away_club_id')->constrained('clubs');
-            $table->integer('home_club_score')->nullable();
-            $table->integer('away_club_score')->nullable();
             $table->unique(['home_club_id', 'away_club_id']);
             $table->unique(['away_club_id', 'home_club_id']);
             $table->unique(['week_id', 'home_club_id']);

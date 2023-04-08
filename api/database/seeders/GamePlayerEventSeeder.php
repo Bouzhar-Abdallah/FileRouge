@@ -19,12 +19,16 @@ class GamePlayerEventSeeder extends Seeder
     {
         $week = Week::first();
         $games = $week->games;
-        $players = Player::all();
         $events = Event::all();
 
         foreach ($games as $game) {
+            $game->is_played = true;
+            $game->save();
+            $awayPlayers = $game->awayClub->players->random(11);
+            $homePlayers= $game->homeClub->players->random(11);
+            $players = $awayPlayers->merge($homePlayers);
             foreach ($players as $player) {
-                $eventCount = rand(1, 3); // Randomly select 1, 2, or 3 events for each player
+                $eventCount = rand(0,2); // Randomly select 1, 2, or 3 events for each player
                 $selectedEvents = $events->random($eventCount);
 
                 foreach ($selectedEvents as $event) {
