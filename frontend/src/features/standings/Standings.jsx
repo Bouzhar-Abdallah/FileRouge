@@ -49,7 +49,7 @@ export default function Standings() {
             <div className="flex justify-between items-center">
               <img
                 className="w-5 h-5 mr-3 ml-3"
-                src={standing.club.icon_logo_url}
+                src={standing.icon_logo_url}
                 alt=""
               />
               {standing.club_name}

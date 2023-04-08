@@ -17,6 +17,7 @@ return new class extends Migration
         CREATE VIEW game_results AS
         SELECT
           g.id AS game_id,
+          g.week_id,
           g.home_club_id,
           g.away_club_id,
           SUM(CASE WHEN e.name = 'goal-scored' AND p.club_id = g.home_club_id THEN 1 ELSE 0 END) AS home_goals,
@@ -30,8 +31,9 @@ return new class extends Migration
           g.is_played = 1
         GROUP BY
           g.id,
+          g.week_id,
           g.home_club_id,
-          g.away_club_id;
+          g.away_club_id;        
     ");
     }
 

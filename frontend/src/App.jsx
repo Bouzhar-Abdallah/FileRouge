@@ -6,12 +6,12 @@ import Fixtures from "./features/fixtures/Fixtures";
 import Standings from "./features/standings/Standings";
 import { useDispatch } from "react-redux";
 import { getStandings } from "./features/standings/standingsSlice";
-import { getGames } from "./features/fixtures/fixturesSlice";
+import { getFixtures } from "./features/fixtures/fixturesSlice";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getGames());
+    dispatch(getFixtures());
   }, []);
   useEffect(() => {
     dispatch(getStandings());

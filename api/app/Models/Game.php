@@ -27,7 +27,10 @@ class Game extends Model
     {
         return $this->homeClub->players->merge($this->awayClub->players);
     }
-
+    public function gameResults()
+    {
+        return $this->hasOne(GamesResult::class);
+    }
 
     public static function getGamesGroupedByWeek()
     {
@@ -44,6 +47,19 @@ class Game extends Model
             },
             'games.homeClub', 
             'games.awayClub',
+            ])
+        ->get();
+        return $weeks;
+    }
+    public static function getResultsGroupedByWeek()
+    {
+        $weeks = Week::with([
+            'games' => function ($query) {
+                $query->where('is_played', true);
+            },
+            'games.homeClub', 
+            'games.awayClub',
+            'games.gameResults',
             ])
         ->get();
         return $weeks;

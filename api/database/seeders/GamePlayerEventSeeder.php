@@ -28,7 +28,7 @@ class GamePlayerEventSeeder extends Seeder
             $homePlayers= $game->homeClub->players->random(11);
             $players = $awayPlayers->merge($homePlayers);
             foreach ($players as $player) {
-                $eventCount = rand(0,2); // Randomly select 1, 2, or 3 events for each player
+                $eventCount = rand(0,2); // Randomly select 0, 1 or 2 events for each player
                 $selectedEvents = $events->random($eventCount);
 
                 foreach ($selectedEvents as $event) {

@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-/* Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::post('register', 'register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
-}); */
+
+Route::apiResource('standings', StandingsController::class);
+Route::get('fixtures', [GameController::class, 'fixtures']);
+Route::get('results', [GameController::class, 'results']);
+
+
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
@@ -58,7 +58,6 @@ Route::group(['middleware' => ['auth:sanctum']],function(){
 });
 
 Route::apiResource('games', GameController::class);
-Route::apiResource('standings', StandingsController::class);
 
 Route::post('login', [AuthController::class,'login']); */
 /* Route::get('generate-token/{id}', function ($id) {

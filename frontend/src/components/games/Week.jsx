@@ -2,6 +2,8 @@ import React from "react";
 import { ListGroup } from "flowbite-react";
 import Game from "./Game";
 export default function Week({ date_limit, week_number, games }) {
+  // test if games is not empty
+  if(games.length === 0) return null
   return (
     <>
       <div className="relative my-3">

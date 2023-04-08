@@ -8,9 +8,9 @@ const initialState = {
 };
 
 export const getStandings = createAsyncThunk("standings", async () => {
-    console.log('getStandings')
     const response = await fetch(url);
     const standings = await response.json();
+    //console.log(standings)
     return standings;
 });
 

@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { Spinner } from "flowbite-react";
-import { getGames } from "./fixturesSlice";
 import Week from "../../components/games/Week";
 
 export default function Fixtures() {
   const { weeks, isLoading } = useSelector((state) => state.fixtures);
   const dispatch = useDispatch();
 
+  //!isLoading && console.log(weeks);
   
   return isLoading ? (
     <ul role="list" className="space-y-5 md:mx-6">

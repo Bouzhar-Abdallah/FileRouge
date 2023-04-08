@@ -10,7 +10,12 @@ class StandingsController extends Controller
 {
     public function index()
     {
-        $standings = Standing::with('club')->get();
+        $standings = Standing::join('clubs', 'standings.club_id', '=', 'clubs.id')
+        ->select('standings.*', 'clubs.name as club_name', 'clubs.*')
+        ->orderBy('points', 'desc')
+        ->orderByRaw('(goals_for - goals_against) desc')
+        ->orderBy('goals_for', 'desc')
+        ->get();
         return response()->json($standings);
     }
 

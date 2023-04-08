@@ -5,8 +5,7 @@ export default function Game({
   home_club,
   away_club,
   is_played,
-  home_club_score,
-  away_club_score,
+  game_results,
 }) {
   let timeParts = time.split(":"); // split the time string into an array of its component parts
   let hoursAndMinutes = timeParts.slice(0, 2).join(":"); // select the first two parts and join them with a colon
@@ -21,9 +20,9 @@ export default function Game({
       {is_played ? (
         <div className="border-r-2 border-l-2 border-green-500 h-10 mx-2 px-4 flex items-center">
             
-            <h1 className="">{home_club_score}</h1>
+            <h1 className="">{game_results.home_goals}</h1>
             <span className="mx-2 ">-</span>
-            <h1 className="">{away_club_score}</h1>
+            <h1 className="">{game_results.away_goals}</h1>
         </div>) : (
         <div className="border-r-2 border-l-2 h-10 mx-2 px-4 flex items-center text-xs text-gray-800">
             <h1>{hoursAndMinutes}</h1>

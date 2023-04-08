@@ -14,4 +14,7 @@ class Club extends Model
     public function Players(){
         return $this->hasMany(Player::class);
     }
+    public function Standing(){
+        return $this->hasOne(Standing::class);
+    }
 }

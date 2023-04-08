@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const url = "http://localhost:8090/api/games";
+const url = "http://localhost:8090/api/fixtures";
 
 const initialState = {
     weeks: [],
     isLoading: true,
 };
 
-export const getGames = createAsyncThunk("game", async () => {
-    const response = await fetch(url, {
+export const getFixtures = createAsyncThunk("fixtures", async () => {
+    const response = await fetch(url/* , {
         credentials: 'include' 
-    });
-    const games = await response.json();
-    console.log(games)
-    return games;
+    } */);
+    const fixtures = await response.json();
+    //console.log(fixtures)
+    return fixtures;
 });
 
 export const fixturesSlice = createSlice({
@@ -21,15 +21,14 @@ export const fixturesSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder
-        .addCase(getGames.fulfilled, (state, action) => {
-            //console.log(action.payload);
+        .addCase(getFixtures.fulfilled, (state, action) => {
             state.isLoading = false;
             state.weeks = action.payload;
         })
-        .addCase(getGames.pending, (state, action) => {
+        .addCase(getFixtures.pending, (state, action) => {
             state.isLoading = true;
         })
-        .addCase(getGames.rejected, (state, action) => {
+        .addCase(getFixtures.rejected, (state, action) => {
             state.isLoading = false;
         });
     },

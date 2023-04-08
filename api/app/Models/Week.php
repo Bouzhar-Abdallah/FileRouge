@@ -18,4 +18,10 @@ class Week extends Model
     {
         return $this->hasMany(UserSelection::class);
     }
+    // app/Models/Week.php
+
+/*     public function gameResults()
+    {
+        return $this->hasMany(GamesResult::class, 'week_id');
+    } */
 }
