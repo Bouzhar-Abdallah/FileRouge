@@ -33,16 +33,19 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('/refresh', [AuthController::class, 'refresh']);
 });
 
-// Routes that require the 'admin' role
+Route::middleware(['auth:api'])->group(function () {
+    //checks if logged in returns who is logged in
+    Route::get('/me', [AuthController::class, 'me']);
+});
+/* // Routes that require the 'admin' role
 Route::middleware(['auth:api', 'role:admin'])->group(function () {
-    Route::get('admin', [AuthController::class, 'userProfile']);
 });
 
 // Routes that require the 'user' role
 Route::middleware(['auth:api', 'role:user'])->group(function () {
     Route::get('user', [AuthController::class, 'userProfile']);
 });
-
+ */
 
 
 

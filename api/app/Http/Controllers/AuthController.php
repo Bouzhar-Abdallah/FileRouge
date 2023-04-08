@@ -31,7 +31,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user = Auth::user();
+        $user = Auth::user()->load('role');
         return response()->json([
                 'status' => 'success',
                 'user' => $user,
@@ -58,7 +58,7 @@ class AuthController extends Controller
             'role_id' => $userRoleId,
         ]);
 
-        $token = Auth::login($user);
+        $token = Auth::login($user->load('role'));
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
@@ -90,9 +90,9 @@ class AuthController extends Controller
             ]
         ]);
     }
-    public function userProfile()
+    public function me()
     {
-        $user = Auth::user();
+        $user = Auth::user()->load('role'); // Load the role relationship
         if ($user) {
             return response()->json([
                 'status' => 'success',
