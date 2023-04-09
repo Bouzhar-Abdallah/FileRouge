@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Squad extends Model
 {
     use HasFactory;
-
+    protected $hidden = ['user_id', 'created_at', 'updated_at'];
     public function User(){
         return $this->belongsTo(User::class);
     }

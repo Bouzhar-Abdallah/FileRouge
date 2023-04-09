@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\GameController;
 use App\Http\Controllers\api\PlayerController;
+use App\Http\Controllers\api\SquadController;
 use App\Http\Controllers\api\StandingsController;
 use App\Http\Controllers\AuthController;
 use App\Models\User;
@@ -37,6 +38,7 @@ Route::middleware(['auth:api'])->group(function () {
 // Routes that require the 'user' role
 Route::middleware(['auth:api', 'role:user'])->group(function () {
     Route::get('players', [PlayerController::class, 'players']);
+    Route::get('squad', [SquadController::class, 'squad']);
 });
 
 

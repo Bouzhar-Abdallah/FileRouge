@@ -10,6 +10,8 @@ class Player extends Model
     use HasFactory;
     /* seeding */
     public $timestamps = false;
+    protected $hidden = ['pivot','poste_id', 'club_id'];
+    
     public function Poste()
     {
         return $this->belongsTo(Poste::class);
