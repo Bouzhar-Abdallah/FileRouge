@@ -3,16 +3,14 @@ import { Avatar } from "flowbite-react";
 import { Dropdown, Navbar } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../features/login/loginSlice";
+import {logoutRequest} from "../features/login/loginSlice";
 export default function NavbarComp() {
   const {user, isLoggedIn, isLoading, role} = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(logout());
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    dispatch(logoutRequest());
   };
-  if (!isLoading) {   
+   
     return (
       <Navbar fluid={true} rounded={true}>
         <Navbar.Brand href="https://flowbite.com/">
@@ -25,9 +23,9 @@ export default function NavbarComp() {
             BotolaPro
           </span>
         </Navbar.Brand>
-        {isLoggedIn ? (
-        
         <div className="flex md:order-2">
+        {isLoggedIn ? (
+        <>
           <Dropdown
             arrowIcon={false}
             inline={true}
@@ -54,10 +52,11 @@ export default function NavbarComp() {
             </Dropdown.Item>
           </Dropdown>
           <Navbar.Toggle />
+          </>
+          ) : (
+            <Link to="/login"> login</Link>
+          )}
         </div>
-        ) : (
-          <Link to="/login"> login</Link>
-        )}
         <Navbar.Collapse>
           <Navbar.Link href="/" active={true}>
             Home
@@ -71,5 +70,5 @@ export default function NavbarComp() {
         </Navbar.Collapse>
       </Navbar>
     );
-  }
+  
 }

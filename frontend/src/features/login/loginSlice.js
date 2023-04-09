@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import axios from "axios";
 const url = "http://localhost:8090/api/";
 
 const initialState = {
@@ -12,20 +12,14 @@ const initialState = {
 };
 
 export const login = createAsyncThunk("login", async (user) => {
-  try {
-    const response = await fetch(url + "login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log("test", error);
-  }
-});
+    try {
+      const response = await axios.post(url + "login", user);
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.log("test", error);
+    }
+  });
 
 export const loginSlice = createSlice({
   name: "auth",
@@ -53,7 +47,7 @@ export const loginSlice = createSlice({
           state.role = action.payload.user.role.name;
 
           localStorage.setItem("token", action.payload.authorisation.token);
-          //localStorage.setItem('user', JSON.stringify(action.payload.user));
+          localStorage.setItem('user', JSON.stringify(action.payload.user));
         }
       })
       .addCase(login.pending, (state, action) => {
@@ -85,47 +79,70 @@ export const loginSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
         state.role = null;
+      })
+      .addCase(logoutRequest.fulfilled, (state) => {
+        resetState(state);
+      })
+      .addCase(logoutRequest.rejected, (state) => {
+        // You can handle errors here if needed
       });
+      
   },
 });
 
 export const checkLoginState = createAsyncThunk(
-  "login/checkLoginState",
-  async (_, thunkAPI) => {
+    "login/checkLoginState",
+    async (_, thunkAPI) => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.log("no token");
+          return thunkAPI.rejectWithValue("No token found.");
+        } else {
+          const response = await axios.get(url + "checkLogin", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const data = response.data;
+          return data;
+        }
+      } catch (error) {
+        console.log(error);
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  );
+
+  export const logoutRequest = createAsyncThunk("logout", async (_, thunkAPI) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
-        console.log("no token");
         return thunkAPI.rejectWithValue("No token found.");
-      } else {
-        const response = await fetch(url + "checkLogin", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = await response.json();
-        return data;
       }
+  
+      await axios.post(url + "logout", null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      localStorage.removeItem("token");
+      localStorage.removeItem('user');
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
-);
-/* export const loadSavedLoginData = () => (dispatch) => {
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
+  });
   
-    if (token && user) {
-      dispatch({
-        type: 'login/loadSavedData',
-        payload: { token, user },
-      });
-    }
-  }; */
 
   export const { logout } = loginSlice.actions;
 
 
 export default loginSlice.reducer;
+
+
+const resetState = (state) => {
+    Object.assign(state, initialState);
+  };
+  
