@@ -3,6 +3,7 @@ import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Fixtures from "./features/fixtures/Fixtures";
 import Standings from "./features/standings/Standings";
+import Fantazy from "./features/fantazy/Fantazy";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -23,10 +24,10 @@ function App() {
       
       <Routes>
         <Route path="/standings" element={<Standings />} />
-        <Route path="/" element={<Fixtures />} />
+        <Route path="/fixtures" element={<Fixtures />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        
+        <Route path="fantazy" element={<Fantazy />} />
       </Routes>
     </div>
   );
