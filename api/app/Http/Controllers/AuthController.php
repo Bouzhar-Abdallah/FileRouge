@@ -90,7 +90,7 @@ class AuthController extends Controller
             ]
         ]);
     }
-    public function me()
+    public function checkLogin()
     {
         $user = Auth::user()->load('role'); // Load the role relationship
         if ($user) {
