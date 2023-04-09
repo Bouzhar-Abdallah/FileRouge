@@ -11,21 +11,20 @@ export default function NavbarComp() {
     dispatch(logoutRequest());
   };
    
-    return (
-      <Navbar fluid={true} rounded={true}>
-        <Navbar.Brand href="https://flowbite.com/">
-          <img
-            src="https://res.cloudinary.com/doy8hfzvk/image/upload/v1680573228/botolapro-low-resolution-logo-color-on-transparent-background_jznqgy.png"
-            className="mr-3 h-8 sm:h-9"
-            alt="Flowbite Logo"
-          />
-          <span className="hidden self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            BotolaPro
-          </span>
-        </Navbar.Brand>
-        <div className="flex md:order-2">
-        {isLoggedIn ? (
-        <>
+  return (
+    <Navbar fluid={true} rounded={true}>
+      <Navbar.Brand href="https://flowbite.com/">
+        <img
+          src="https://res.cloudinary.com/doy8hfzvk/image/upload/v1680573228/botolapro-low-resolution-logo-color-on-transparent-background_jznqgy.png"
+          className="mr-3 h-8 sm:h-9"
+          alt="Flowbite Logo"
+        />
+        <span className="hidden self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          BotolaPro
+        </span>
+      </Navbar.Brand>
+      <div className="flex md:order-2 hid">
+        {isLoggedIn && (
           <Dropdown
             arrowIcon={false}
             inline={true}
@@ -38,37 +37,45 @@ export default function NavbarComp() {
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">Bonnie Green</span>
+              <span className="block text-sm">Bonjour</span>
               <span className="block truncate text-sm font-medium">
-                name@flowbite.com
+                {user.name}
               </span>
             </Dropdown.Header>
             <Dropdown.Item>Dashboard</Dropdown.Item>
             <Dropdown.Item>Settings</Dropdown.Item>
             <Dropdown.Item>Earnings</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item>
-              <button onClick={handleLogout}>Sign out</button>
-            </Dropdown.Item>
+            {isLoggedIn && (
+              <Dropdown.Item>
+                <button onClick={handleLogout}>Sign out</button>
+              </Dropdown.Item>
+            )}
           </Dropdown>
-          <Navbar.Toggle />
-          </>
-          ) : (
-            <Link to="/login"> login</Link>
-          )}
-        </div>
-        <Navbar.Collapse>
-          <Navbar.Link href="/" active={true}>
-            Home
-          </Navbar.Link>
-          <Link to="signup">signup</Link>
-          <Link to="login">Login</Link>
-          <Link to="standings">standings</Link>
-          <Link to="/">fixtures</Link>
-  
-          
-        </Navbar.Collapse>
-      </Navbar>
-    );
+        )}
+
+        <Navbar.Toggle />
+      </div>
+      <Navbar.Collapse>
+        <Navbar.Link href="/" active={true}>
+          Home
+        </Navbar.Link>
+        <Navbar.Link href="/fixtures" active={false}>
+          Fixtures
+        </Navbar.Link>
+        <Navbar.Link href="/signup" active={false}>
+          Signup
+        </Navbar.Link>
+        <Navbar.Link href="/login" active={false}>
+          Login
+        </Navbar.Link>
+
+        {/* <Link to="signup">signup</Link>
+        <Link to="login">Login</Link>
+        <Link to="standings">standings</Link>
+        <Link to="/">fixtures</Link> */}
+      </Navbar.Collapse>
+    </Navbar>
+  );
   
 }

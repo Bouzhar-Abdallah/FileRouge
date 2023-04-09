@@ -16,7 +16,7 @@ export default function Login() {
         dispatch(login({email, password}));
     }
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 mx-40 mt-16 border p-10">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 mx-5 md:mx-40 mt-16 border p-5">
         
       <div>
         <div className="mb-2 block">

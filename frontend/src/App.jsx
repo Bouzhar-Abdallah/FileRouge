@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkLoginState } from "./features/login/loginSlice";
 
+
 function App() {
   
   const dispatch = useDispatch();
@@ -19,11 +20,13 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <NavbarComp />
+      
       <Routes>
         <Route path="/standings" element={<Standings />} />
         <Route path="/" element={<Fixtures />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        
       </Routes>
     </div>
   );
