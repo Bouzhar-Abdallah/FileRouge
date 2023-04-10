@@ -1,3 +1,4 @@
+import React from "react";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -20,6 +21,19 @@ export const login = createAsyncThunk("login", async (user) => {
     return { data }; // Return only the necessary data
   } catch (error) {
     console.log(error.response);
+    return { data: error.response.data, status: error.response.status };
+  }
+});
+
+export const register = createAsyncThunk("register", async (user) => {
+  console.log('user', user)
+  try {
+    const response = await axios.post(url + "register", user);
+    const data = response.data;
+    console.log('data', data)
+    return { data }; // Return only the necessary data
+  } catch (error) {
+    console.log('error', error)
     return { data: error.response.data, status: error.response.status };
   }
 });
@@ -91,7 +105,34 @@ export const loginSlice = createSlice({
       })
       .addCase(logoutRequest.rejected, (state) => {
         toast.error("Logge out failed");
-      });
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        if (action.payload.status === 400) {
+          toast.error("Registration failed");
+          state.isLoading = false;
+        } else {
+          state.isLoading = false;
+          state.user = action.payload.data.user;
+          state.token = action.payload.data.authorisation.token;
+          state.isLoggedIn = true;
+          state.role = action.payload.data.user.role.name;
+          toast.success("Registered successfully");
+
+          encryptData({
+            user: action.payload.data.user,
+            token: action.payload.data.authorisation.token,
+          });
+        }
+      })
+      .addCase(register.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(register.rejected, (state, action) => {
+        console.log("rejected");
+        state.isLoading = false;
+        state.error = action.error.message;
+      }
+    );
   },
 });
 

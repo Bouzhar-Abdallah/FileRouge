@@ -8,10 +8,12 @@ const initialState = {
 };
 
 export const getPlayers = createAsyncThunk("players", async () => {
+    const creds = decryptData();
+    const token = creds.token;
     const response = await axios.get(url, {
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
             },
             });
     const players = await response.data;
