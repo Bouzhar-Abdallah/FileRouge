@@ -8,6 +8,8 @@ export default function NavbarComp() {
   const { user, isLoggedIn, isLoading, role } = useSelector(
     (state) => state.login
   );
+  /* console.log('user', user)
+  console.log('role', role) */
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutRequest());

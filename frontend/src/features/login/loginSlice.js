@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { encryptData, decryptData } from "../../utilities/functions";
 const url = "http://localhost:8090/api/";
 
 const initialState = {
@@ -18,7 +19,7 @@ export const login = createAsyncThunk("login", async (user) => {
     const data = response.data;
     return { data }; // Return only the necessary data
   } catch (error) {
-    console.log(error.response)
+    console.log(error.response);
     return { data: error.response.data, status: error.response.status };
   }
 });
@@ -33,15 +34,28 @@ export const loginSlice = createSlice({
       state.status = null;
       state.role = null;
     },
+    checkUser: (state) => {
+      const creds = decryptData();
+      if (creds.user) {
+        state.user = creds.user;
+        state.token = creds.token;
+        state.isLoggedIn = true;
+        state.role = creds.user.role.name;
+      } else {
+        state.user = {};
+        state.token = "";
+        state.status = null;
+        state.role = null;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        
         if (action.payload.status === 401) {
-        //if (action.payload.error.status === 401) {
+          //if (action.payload.error.status === 401) {
           //console.log("login failed");
-          toast.error('Logge in failed');
+          toast.error("Logge in failed");
           state.isLoading = false;
         } else {
           state.isLoading = false;
@@ -49,15 +63,12 @@ export const loginSlice = createSlice({
           state.token = action.payload.data.authorisation.token;
           state.isLoggedIn = true;
           state.role = action.payload.data.user.role.name;
-          toast.success('Logged in successfully');
-          localStorage.setItem(
-            "token",
-            action.payload.data.authorisation.token
-          );
-          localStorage.setItem(
-            "user",
-            JSON.stringify(action.payload.data.user)
-          );
+          toast.success("Logged in successfully");
+
+          encryptData({
+            user: action.payload.data.user,
+            token: action.payload.data.authorisation.token,
+          });
         }
       })
       .addCase(login.pending, (state, action) => {
@@ -74,79 +85,38 @@ export const loginSlice = createSlice({
         state.isLoggedIn = true;
         state.role = action.payload.user.role.name;
       })
-      /* .addCase(checkLoginState.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(checkLoginState.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.user = action.payload.user;
-        state.token = localStorage.getItem("token");
-        state.isLoggedIn = true;
-        state.role = action.payload.user.role.name;
-      })
-      .addCase(checkLoginState.rejected, (state) => {
-        state.isLoading = false;
-        state.user = null;
-        state.token = null;
-        state.isLoggedIn = false;
-        state.role = null;
-      }) */
       .addCase(logoutRequest.fulfilled, (state) => {
         resetState(state);
-        toast.success('Logged out successfully');
-
+        toast.success("Logged out successfully");
       })
       .addCase(logoutRequest.rejected, (state) => {
-        toast.error('Logge out failed');
-        // You can handle errors here if needed
+        toast.error("Logge out failed");
       });
   },
 });
 
-export const checkLoginState = createAsyncThunk(
-  "login/checkLoginState",
-  async (_, thunkAPI) => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        return thunkAPI.rejectWithValue("No token found.");
-      } else {
-        const response = await axios.get(url + "checkLogin", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = response.data;
-        return { data }; // Return only the necessary data
-      }
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const logoutRequest = createAsyncThunk("logout", async (_, thunkAPI) => {
   try {
-    const token = localStorage.getItem("token");
+    const creds = decryptData();
+    const token = creds.token;
     if (!token) {
       return thunkAPI.rejectWithValue("No token found.");
     }
-
+    
     await axios.post(url + "logout", null, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem("creds");
+    
   } catch (error) {
-    //console.log(error);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-export const { logout } = loginSlice.actions;
+export const { logout, checkUser } = loginSlice.actions;
 
 export default loginSlice.reducer;
 
