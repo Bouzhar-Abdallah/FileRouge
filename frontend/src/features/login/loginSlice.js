@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import axios from "axios";
 const url = "http://localhost:8090/api/";
 
@@ -39,7 +40,8 @@ export const loginSlice = createSlice({
         
         if (action.payload.status === 401) {
         //if (action.payload.error.status === 401) {
-          console.log("login failed");
+          //console.log("login failed");
+          toast.error('Logge in failed');
           state.isLoading = false;
         } else {
           state.isLoading = false;
@@ -47,7 +49,7 @@ export const loginSlice = createSlice({
           state.token = action.payload.data.authorisation.token;
           state.isLoggedIn = true;
           state.role = action.payload.data.user.role.name;
-
+          toast.success('Logged in successfully');
           localStorage.setItem(
             "token",
             action.payload.data.authorisation.token
@@ -91,8 +93,11 @@ export const loginSlice = createSlice({
       }) */
       .addCase(logoutRequest.fulfilled, (state) => {
         resetState(state);
+        toast.success('Logged out successfully');
+
       })
       .addCase(logoutRequest.rejected, (state) => {
+        toast.error('Logge out failed');
         // You can handle errors here if needed
       });
   },

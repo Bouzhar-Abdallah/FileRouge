@@ -8,20 +8,22 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkLoginState } from "./features/login/loginSlice";
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
   
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(checkLoginState())
-  }, [])
-  
+    dispatch(checkLoginState());
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100">
       <NavbarComp />
-      
+
       <Routes>
         <Route path="/standings" element={<Standings />} />
         <Route path="/fixtures" element={<Fixtures />} />
@@ -29,6 +31,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="fantazy" element={<Fantazy />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
