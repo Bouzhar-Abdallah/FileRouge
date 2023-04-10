@@ -3,19 +3,20 @@ import { Button} from "flowbite-react";
 import Pitch from "../../components/fantazy/Pitch";
 import PlayersC from "../../components/fantazy/PlayersC";
 import { useDispatch } from "react-redux";
-import { getSquad } from "./fantazySlice";
+import { getSquad } from "./squadSlice";
 import { useSelector } from "react-redux";
 import Loading from "../../components/Loading";
+import Squad from "../../components/fantazy/Squad";
 
 export default function Fantazy() {
-  const { name, isLoading } = useSelector((state) => state.squad);
-
+  const { name, isLoading, hasSquad, TotaleValue } = useSelector((state) => state.squad);
+//console.log(TotaleValue)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSquad());
   }, []);
 
-  if (!isLoading && name == null) {
+  if (!isLoading && !hasSquad) {
     return (
       <div className="bg-blue-300 p-3 mx-auto flex items-center">
         <h2 className="text-xl text-center">
@@ -33,6 +34,6 @@ export default function Fantazy() {
     return <Loading />;   
   }else{
 
-      return <div>fantazy</div>;
+      return <Squad />
   }
 }

@@ -17,7 +17,8 @@ class UserSelectionSeeder extends Seeder
         $users = User::whereHas('role', function ($query) {
             $query->where('name', 'user');
         })->get();
-        $weeks = Week::all();
+        
+        $weeks = Week::where('week_number', '<=', 1)->get();
 
         foreach ($users as $user) {
             foreach ($weeks as $week) {

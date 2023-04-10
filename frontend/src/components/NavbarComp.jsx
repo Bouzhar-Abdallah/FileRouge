@@ -3,14 +3,16 @@ import { Avatar } from "flowbite-react";
 import { Dropdown, Navbar } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {logoutRequest} from "../features/login/loginSlice";
+import { logoutRequest } from "../features/login/loginSlice";
 export default function NavbarComp() {
-  const {user, isLoggedIn, isLoading, role} = useSelector((state) => state.login);
+  const { user, isLoggedIn, isLoading, role } = useSelector(
+    (state) => state.login
+  );
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutRequest());
   };
-   
+
   return (
     <Navbar fluid={true} rounded={true}>
       <Navbar.Brand href="https://flowbite.com/">
@@ -29,11 +31,21 @@ export default function NavbarComp() {
             arrowIcon={false}
             inline={true}
             label={
-              <Avatar
+              <svg
                 alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                rounded={true}
-              />
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                />
+              </svg>
             }
           >
             <Dropdown.Header>
@@ -79,5 +91,4 @@ export default function NavbarComp() {
       </Navbar.Collapse>
     </Navbar>
   );
-  
 }
