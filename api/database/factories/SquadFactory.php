@@ -19,6 +19,7 @@ class SquadFactory extends Factory
         $nameLength = fake()->numberBetween(5, 10);
         return [
             'name' => fake()->text($nameLength),
+            'logo_id' => 1,
         ];
     }
 }

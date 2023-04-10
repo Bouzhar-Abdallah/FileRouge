@@ -28,15 +28,15 @@ class UserSeeder extends Seeder
             ])
 
             ->create();
-        User::factory()
-            ->count(1)
-            ->hasSquad(1)
-            ->state([
-                'name' => 'user',
-                'email' => 'user@user.com',
-                'password' => bcrypt('user'),
-                'role_id' => $userRole->id,
-            ])
-            ->create();
-    }
+            User::factory()
+                ->count(1)
+                ->hasSquad(1)
+                ->state([
+                    'name' => 'has squad',
+                    'email' => 'squad@user.com',
+                    'password' => bcrypt('password'),
+                    'role_id' => $userRole->id,
+                ])
+                ->create();
+        }
 }

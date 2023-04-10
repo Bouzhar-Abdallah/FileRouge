@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         
         $this->call([
+            LogoSeeder::class,
             RoleSeeder::class,
             PosteSeeder::class,
             ClubSeeder::class,
