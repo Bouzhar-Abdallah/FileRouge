@@ -19,12 +19,10 @@ export default function Fantazy() {
     dispatch(getSquad());
   }, []);
 
-  if (!isLoading && !hasSquad) {
-    return <CreateSquad />;
-  }
   if (isLoading) {
     return <Loading />;
   } else {
-    return <Squad />;
+    return <CreateSquad />;
+    /* return <Squad />; */
   }
 }

@@ -39,7 +39,10 @@ Route::middleware(['auth:api'])->group(function () {
 Route::middleware(['auth:api', 'role:user'])->group(function () {
     Route::get('players', [PlayerController::class, 'players']);
     Route::get('squad', [SquadController::class, 'squad']);
+    Route::post('saveNewSquad', [SquadController::class, 'saveNewSquad']);
+
 });
+Route::get('getLogos', [SquadController::class, 'getLogos']);
 
 
 /* // Routes that require the 'admin' role

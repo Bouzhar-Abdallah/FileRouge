@@ -15,6 +15,7 @@ const initialState = {
 };
 
 export const login = createAsyncThunk("login", async (user) => {
+  console.log('login')
   try {
     const response = await axios.post(url + "login", user);
     const data = response.data;
@@ -66,6 +67,7 @@ export const loginSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
+        
         if (action.payload.status === 401) {
           //if (action.payload.error.status === 401) {
           //console.log("login failed");
