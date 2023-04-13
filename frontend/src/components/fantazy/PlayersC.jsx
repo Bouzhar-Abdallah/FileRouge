@@ -33,8 +33,6 @@ export default function PlayersC() {
     filterPlayers();
   }, [club, poste, search]);
 
-  console.log(club);
-
   if (!isLoading) {
     return (
       <div className="antialiased font-sans ">
@@ -186,7 +184,7 @@ export default function PlayersC() {
                     ))}
                   </tbody>
                 </table>
-                <div className="px-2 py-2 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+                <div className="hidden px-2 py-2 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                   <span className="text-xs xs:text-sm text-gray-900">
                     Showing 1 to 4 of 50 Entries
                   </span>
