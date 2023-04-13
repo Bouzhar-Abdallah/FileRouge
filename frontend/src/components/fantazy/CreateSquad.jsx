@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { Button } from "flowbite-react";
 import ProgressComp from "../elements/ProgressComp";
 import { useDispatch, useSelector } from "react-redux";
-
+import PlayersC from "./PlayersC";
 import Loading from "../Loading";
+import { getPlayers } from "../../features/fantazy/playersSlice";
 import {
   previousStep,
   nextStep,
@@ -17,7 +18,11 @@ export default function CreateSquad() {
     (state) => state.squad
   );
 
+  
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPlayers());
+  }, []);
 
   if (!hasStarted) {
     return (
@@ -44,20 +49,21 @@ export default function CreateSquad() {
 
   return (
     <>
+      <div className="flex justify-center items-end fixed bottom-0 w-full py-2 gap-2">
+        <Button onClick={() => dispatch(previousStep())}>prev</Button>
+        <Button onClick={() => dispatch(nextStep())}>next</Button>
+      </div>
+
       <ProgressComp />
       <div className="grid grid-cols-3 justify-between mx-5 gap-5">
         <div className="col-span-2">
+          {step == 2 && <PlayersC />}
           {step == 1 && <InputName />}
           {step == 0 && <Logos />}
         </div>
         <div className="">
           <SquadInfo />
         </div>
-      </div>
-
-      <div className="flex gap-5 justify-center mt-5">
-        <Button onClick={() => dispatch(previousStep())}>prev</Button>
-        <Button onClick={() => dispatch(nextStep())}>next</Button>
       </div>
     </>
   );

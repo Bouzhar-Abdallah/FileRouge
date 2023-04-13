@@ -12,11 +12,13 @@ import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import { decryptData, encryptData } from "./utilities/functions";
+import { getClubs } from "./features/clubs/clubsSlice";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkUser());
+    dispatch(getClubs());
   }, []);
   //console.log(decryptData()?.token);
   return (

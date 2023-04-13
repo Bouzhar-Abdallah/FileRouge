@@ -44,7 +44,7 @@ export const saveNewSquad = createAsyncThunk(
       name: state.name,
       logo_id: state.logo.id,
     };
-    console.log(squad);
+    //console.log(squad);
 
     const response = await axios.post(url + "saveNewSquad", squad, {
       headers: {
@@ -76,17 +76,27 @@ export const squadSlice = createSlice({
     setName: (state, action) => {
       state.name = action.payload;
     },
+    selectPlayer: (state, action) => {
+      console.log(action.payload)
+      state.players.push(action.payload);
+      state.TotaleValue = calculateTotaleValue(state.players);
+    },
+    removePlayer: (state, action) => {
+      const index = state.players.findIndex((player) => player.id === action.payload.id);
+      state.players.splice(index, 1);
+      state.TotaleValue = calculateTotaleValue(state.players);
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getSquad.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log(action.payload);
+        //console.log(action.payload);
         if (action.payload.squad != null) {
           if (action.payload.squad.players == null) {
             console.log("has players");
           } else {
-            console.log("no players");
+            //console.log("no players");
             state.step = 2;
             state.hasStarted = true;
             state.logo = action.payload.logo;
@@ -125,6 +135,6 @@ export const squadSlice = createSlice({
       });
   },
 });
-export const { setStarted, nextStep, previousStep, setLogo, setName } =
+export const { setStarted, nextStep, previousStep, setLogo, setName, selectPlayer, removePlayer } =
   squadSlice.actions;
 export default squadSlice.reducer;
