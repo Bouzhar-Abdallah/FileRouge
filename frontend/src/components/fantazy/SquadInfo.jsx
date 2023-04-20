@@ -5,7 +5,9 @@ import { saveNewSquad } from "../../features/fantazy/squadSlice";
 import SquadList from "./SquadList";
 export default function SquadInfo() {
   const dispatch = useDispatch();
-  const { name, logo, step, TotaleValue } = useSelector((state) => state.squad);
+  const { name, logo, step, TotaleValue, players } = useSelector(
+    (state) => state.squad
+  );
   if (step < 2) {
     return (
       <div className="max-w-sm">
@@ -56,9 +58,7 @@ export default function SquadInfo() {
   } else {
     return (
       <>
-        <div
-          className="bg-white relative block overflow-hidden rounded-lg border border-gray-100 p-2 sm:p-2 lg:p-4"
-        >
+        <div className="bg-white relative block overflow-hidden rounded-lg border border-gray-100 p-2 sm:p-2 lg:p-4">
           <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
 
           <div className="sm:flex sm:justify-between sm:gap-4">
@@ -67,32 +67,37 @@ export default function SquadInfo() {
                 {name ? name : "Squad Name"}
               </h3>
 
-              <p className="mt-1 text-xs font-medium text-gray-600">Budget :
-              <span className="border border-green-400 ml-2 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-              {10000 - TotaleValue} 
+              <p className="mt-1 text-xs font-medium text-gray-600">
+                Budget :
+                <span className="border border-green-400 ml-2 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                  {10000 - TotaleValue}
                 </span>
               </p>
             </div>
 
             <div className="hidden sm:block sm:shrink-0">
               <img
-               src={logo.url} alt="logo"
+                src={logo.url}
+                alt="logo"
                 className="h-16 w-16 rounded-lg object-cover shadow-md"
               />
             </div>
           </div>
 
           <div className="mt-4">
-            <p className="max-w-[40ch] text-sm text-gray-500">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. At velit
-              illum provident a, ipsa maiores deleniti consectetur nobis et
-              eaque.
-            </p>
+            {step === 2 && (
+              <>
+                <p className="mb-1 text-center text-sm text-gray-500">
+                  Select 16 players to form your squad
+                </p>
+                <p className="mb-3 text-center text-sm text-gray-500">
+                  {players.length} players selected
+                </p>
+              </>
+            )}
           </div>
 
-          <dl className="mt-2 ">
-            <SquadList />
-          </dl>
+          <SquadList />
         </div>
       </>
     );

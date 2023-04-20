@@ -85,6 +85,9 @@ export default function NavbarComp() {
         <Navbar.Link href="/login" active={false}>
           Login
         </Navbar.Link>
+        <Navbar.Link href="/fantazy" active={false}>
+          Fantazy
+        </Navbar.Link>
 
         {/* <Link to="signup">signup</Link>
         <Link to="login">Login</Link>

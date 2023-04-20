@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Logo;
+use App\Models\Player;
 use Illuminate\Http\Request;
 
 class SquadController extends Controller
@@ -70,6 +71,31 @@ class SquadController extends Controller
         return response()->json([
             'message' => 'Squad saved successfully',
             'squad' => $squad
+        ], 201);
+    }
+    public function saveSelectedPlayers(Request $request){
+        $ids = $request->all();
+        $players = Player::find($ids);
+        $sum = 0;
+        foreach ($players as $key => $player) {
+            $sum += $player->price;
+        }
+        if ($players->count() != 16 ) {
+            return response()->json([
+                'message' => 'selected players count should be 16',
+            ], 422);
+        }
+        if ($sum > 10000) {
+            return response()->json([
+                'message' => 'selected players total value exeeds the allowed value',
+            ], 422);
+        }
+
+        $user = auth()->user();
+        $user->Squad->players()->sync($ids);
+        return response()->json([
+            'message' => 'Squad saved successfully',
+            'squad' => $user->Squad
         ], 201);
     }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPlayers } from "../../features/fantazy/playersSlice";
-import { selectPlayer } from "../../features/fantazy/squadSlice";
+import { selectPlayer, setRandomSquad } from "../../features/fantazy/squadSlice";
 import Loading from "../Loading";
 export default function PlayersC() {
   const { players, isLoading } = useSelector((state) => state.players);
@@ -28,7 +28,25 @@ export default function PlayersC() {
     });
     setPlayersFiltered(filteredPlayers);
   };
+/*  */
+const RandomSquad = () => {
+  let randomPlayers = [];
+  let numPlayers = 16;
+  let maxTries = 100;
 
+  while (randomPlayers.length < numPlayers && maxTries > 0) {
+    let randomIndex = Math.floor(Math.random() * players.length);
+    let randomPlayer = players[randomIndex];
+
+    if (!randomPlayers.includes(randomPlayer)) {
+      randomPlayers.push(randomPlayer);
+    }
+
+    maxTries--;
+  }
+  dispatch(setRandomSquad(randomPlayers)); 
+};
+/*  */
   useEffect(() => {
     filterPlayers();
   }, [club, poste, search]);
@@ -101,6 +119,11 @@ export default function PlayersC() {
                   />
                 </div>
               </div>
+              <button onClick={
+                () => {
+                  RandomSquad();
+                }
+              } className="p-3 bg-indigo-500">test</button>
             </div>
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8  overflow-x-auto">
               <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">

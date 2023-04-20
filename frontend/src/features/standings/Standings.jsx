@@ -106,10 +106,10 @@ export default function Standings() {
                 </thead>
                 <tbody className="bg-gray-800">
                   {standings.map((standing) => {
-                    console.log(standing)
+                    let rank = standings.indexOf(standing) + 1;
                     return (
                       <tr key={standing.id} className="bg-black bg-opacity-20">
-                        <td className="pl-4">1</td>
+                        <td className="pl-4">{rank}</td>
                         <td className="flex px-6 py-4 whitespace-nowrap">
                           <img
                             className="w-5"

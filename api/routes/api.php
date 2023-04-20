@@ -42,7 +42,9 @@ Route::middleware(['auth:api', 'role:user'])->group(function () {
     Route::get('squad', [SquadController::class, 'squad']);
     Route::post('saveNewSquad', [SquadController::class, 'saveNewSquad']);
     Route::get('getLogos', [SquadController::class, 'getLogos']);
+    Route::post('saveSelectedPlayers', [SquadController::class, 'saveSelectedPlayers']);
 });
+
 Route::get('getClubs', [ClubsController::class, 'getClubs']);
 /* Route::get('players', [PlayerController::class, 'players']);
 Route::get('squad', [SquadController::class, 'squad']);
@@ -58,7 +60,7 @@ Route::middleware(['auth:api', 'role:admin'])->group(function () {
 
 
 
-Route::group(['middleware' => ['auth:sanctum']],function(){
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('games', GameController::class);
     //Route::post('logout', [AuthController::class,'logout']);
 });

@@ -13,12 +13,13 @@ import {
 import SquadInfo from "./SquadInfo";
 import Logos from "../elements/Logos";
 import InputName from "../elements/InputName";
-export default function CreateSquad() {
-  const { name, isLoading, logoURL, logos, hasStarted, step } = useSelector(
-    (state) => state.squad
-  );
+import ReviewConfirmSquad from "../elements/ReviewConfirmSquad";
 
-  
+export default function CreateSquad() {
+  const { name, isLoading, logoURL, logos, hasStarted, step } =
+    useSelector((state) => state.squad);
+
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPlayers());
@@ -49,12 +50,17 @@ export default function CreateSquad() {
 
   return (
     <>
-      <div className="flex justify-center items-end fixed bottom-0 w-full py-2 gap-2">
+       
+      {step < 3 && (
+
+        <div className="flex justify-center items-end fixed bottom-0 w-full py-2 gap-2">
         <Button onClick={() => dispatch(previousStep())}>prev</Button>
         <Button onClick={() => dispatch(nextStep())}>next</Button>
       </div>
+        )}
 
       <ProgressComp />
+          {step == 3 && <ReviewConfirmSquad />}
       <div className="grid grid-cols-3 justify-between mx-5 gap-5">
         <div className="col-span-2">
           {step == 2 && <PlayersC />}
@@ -62,7 +68,8 @@ export default function CreateSquad() {
           {step == 0 && <Logos />}
         </div>
         <div className="">
-          <SquadInfo />
+          {step < 3 && <SquadInfo />}
+          
         </div>
       </div>
     </>

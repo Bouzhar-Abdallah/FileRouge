@@ -9,7 +9,7 @@ export default function Squad() {
     <div className="w-fit">
       <ListGroup>
           <ListGroup.Item active={true} key="1232">
-            <div className="flex ">
+            <div className="flex">
               <div className="w-32 text-left">poste</div>
               <div className="w-48 text-left">player</div>
               <div className=" text-left">price</div>
