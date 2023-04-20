@@ -31,14 +31,9 @@ export default function SquadInfo() {
           </a>
 
           <div className=" flex items-center justify-between">
-            <div className="flex flex-col items-center">
-              <span className="">Budget :</span>
-              <span className=" text-gray-900 dark:text-white">
-                {10000 - TotaleValue}
-                <span className="text-xs text-gray-400 font-thin">MAD</span>
-              </span>
-            </div>
-            <button
+           
+            {step === 1 && (
+              <button
               onClick={() => {
                 dispatch(saveNewSquad());
               }}
@@ -46,6 +41,7 @@ export default function SquadInfo() {
             >
               Save
             </button>
+            )}
           </div>
           {step === 2 && (
             <div className="">

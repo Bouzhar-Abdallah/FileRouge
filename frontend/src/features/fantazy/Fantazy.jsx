@@ -8,12 +8,13 @@ import { useSelector } from "react-redux";
 import Loading from "../../components/Loading";
 import Squad from "../../components/fantazy/Squad";
 import CreateSquad from "../../components/fantazy/CreateSquad";
+import Home from "../../components/fantazy/Home";
 
 export default function Fantazy() {
-  const { name, isLoading, hasSquad, TotaleValue } = useSelector(
+  const { isLoading, hasSelection} = useSelector(
     (state) => state.squad
   );
-  //console.log(TotaleValue)
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSquad());
@@ -21,8 +22,15 @@ export default function Fantazy() {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (hasSelection) {
+    return (
+      <>
+      <Home />
+      </>
+    );
   } else {
     return <CreateSquad />;
-    /* return <Squad />; */
   }
 }

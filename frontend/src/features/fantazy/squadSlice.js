@@ -15,6 +15,7 @@ const initialState = {
   TotaleValue: 0,
   players: [],
   hasSquad: false,
+  hasSelection: false,
   isLoading: true,
   step: 0,
   stepsName: [
@@ -35,7 +36,7 @@ export const getSquad = createAsyncThunk("squad", async () => {
     },
   });
   const data = await response.data;
-  //console.log(data);
+  console.log(data);
   return data;
 });
 
@@ -80,9 +81,8 @@ export const saveSelectedPlayers = createAsyncThunk(
         },
       });
       const data = await response.data;
-      return {data: data, status: response.status};
+      return { data: data, status: response.status };
     } catch (error) {
-      
       return { data: error.response.data, status: error.response.status };
     }
   }
@@ -157,12 +157,22 @@ export const squadSlice = createSlice({
     builder
       .addCase(getSquad.fulfilled, (state, action) => {
         state.isLoading = false;
-        //console.log(action.payload);
-        if (action.payload.squad != null) {
-          if (action.payload.squad.players == null) {
-            console.log("has players");
+        if (action.payload.squad == null) {
+          state.logos = action.payload.logos;
+          state.hasSquad = false;
+          state.step = 0;
+        } else {
+          if (action.payload.squad.players.length == 0) {
+            state.hasSelection = false;
+            state.logo = action.payload.logo;
+            state.logos = action.payload.logos;
+            
+            state.step = 2;
+            state.hasStarted = true;
+            
           } else {
-            //console.log("no players");
+            state.hasSelection = true;
+            
             state.step = 2;
             state.hasStarted = true;
             state.logo = action.payload.logo;
@@ -174,9 +184,8 @@ export const squadSlice = createSlice({
           state.players = action.payload.squad.players;
           state.hasSquad = true;
           state.TotaleValue = calculateTotaleValue(state.players);
-        } else {
-          state.logos = action.payload.logos;
         }
+       
       })
       .addCase(getSquad.pending, (state, action) => {
         //console.log("pending");
@@ -203,10 +212,10 @@ export const squadSlice = createSlice({
         state.isLoading = false;
         if (action.payload.status === 201) {
           toast.success("your selection has been saved");
-        }else{
+        } else {
           toast.error("an error occured");
         }
-        
+
         state.hasFinished = true;
       })
       .addCase(saveSelectedPlayers.pending, (state, action) => {

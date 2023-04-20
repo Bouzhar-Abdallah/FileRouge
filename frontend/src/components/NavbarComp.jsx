@@ -16,11 +16,11 @@ export default function NavbarComp() {
   };
 
   return (
-    <Navbar fluid={true} rounded={true}>
+    <Navbar className="bg-darkBlue text-white rounded-none" fluid={true} rounded={true}>
       <Navbar.Brand href="https://flowbite.com/">
         <img
-          src="https://res.cloudinary.com/doy8hfzvk/image/upload/v1680573228/botolapro-low-resolution-logo-color-on-transparent-background_jznqgy.png"
-          className="mr-3 h-8 sm:h-9"
+          src="https://res.cloudinary.com/doy8hfzvk/image/upload/v1682016636/Screenshot_2023-04-17_at_11.39.07-removebg-preview_yeddz9.png"
+          className=" h-10 absolute top-0 left-0"
           alt="Flowbite Logo"
         />
         <span className="hidden self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -30,6 +30,7 @@ export default function NavbarComp() {
       <div className="flex md:order-2 hid">
         {isLoggedIn && (
           <Dropdown
+          className="bg-darkBlue"
             arrowIcon={false}
             inline={true}
             label={
@@ -73,7 +74,7 @@ export default function NavbarComp() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/" active={true}>
+        <Navbar.Link href="/" active={false}>
           Home
         </Navbar.Link>
         <Navbar.Link href="/fixtures" active={false}>
