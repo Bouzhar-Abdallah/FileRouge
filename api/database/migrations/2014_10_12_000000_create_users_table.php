@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('has_squad')->default(false);
+            $table->integer('remaining_budget')->default(10000);
             $table->foreignId('role_id')->constrained('roles');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
