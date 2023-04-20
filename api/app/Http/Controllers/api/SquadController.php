@@ -93,6 +93,8 @@ class SquadController extends Controller
 
         $user = auth()->user();
         $user->Squad->players()->sync($ids);
+        $user->remaining_budget = 10000 - $sum;
+        $user->save();
         return response()->json([
             'message' => 'Squad saved successfully',
             'squad' => $user->Squad
