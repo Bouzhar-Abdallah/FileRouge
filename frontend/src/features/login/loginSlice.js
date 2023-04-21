@@ -3,11 +3,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { encryptData, decryptData } from "../../utilities/functions";
+
+
 const url = "http://localhost:8090/api/";
+
 
 const initialState = {
   user: {},
   isLoggedIn: false,
+  didLogout: false,
   isLoading: true,
   token: "",
   error: null,
@@ -80,7 +84,7 @@ export const loginSlice = createSlice({
           state.isLoggedIn = true;
           state.role = action.payload.data.user.role.name;
           toast.success("Logged in successfully");
-
+          
           encryptData({
             user: action.payload.data.user,
             token: action.payload.data.authorisation.token,
@@ -103,6 +107,7 @@ export const loginSlice = createSlice({
       })
       .addCase(logoutRequest.fulfilled, (state) => {
         resetState(state);
+        state.didLogout = true;
         toast.success("Logged out successfully");
       })
       .addCase(logoutRequest.rejected, (state) => {
