@@ -34,6 +34,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/checkLogin', [AuthController::class, 'checkLogin']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/checkLogin', [AuthController::class, 'checkLogin']);
 });
 
 // Routes that require the 'user' role
