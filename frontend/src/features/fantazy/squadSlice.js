@@ -36,7 +36,7 @@ export const getSquad = createAsyncThunk("squad", async () => {
     },
   });
   const data = await response.data;
-  console.log(data);
+  //console.log(data);
   return data;
 });
 

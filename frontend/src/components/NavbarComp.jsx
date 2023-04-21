@@ -17,7 +17,7 @@ export default function NavbarComp() {
   const handleLogout = () => {
     dispatch(logoutRequest());
   };
-  console.log(isLoggedIn)
+  
   useEffect(() => {
     if (!isLoggedIn && didLogout) {
       navigate("/");
