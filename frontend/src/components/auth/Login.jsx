@@ -3,18 +3,25 @@ import { Label, TextInput, Checkbox, Button } from "flowbite-react";
 import {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../features/login/loginSlice";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    const loginStatus = useSelector(state => state.login.status);
+    const navigate = useNavigate();
+    const {isLoggedIn} = useSelector(state => state.login);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(login({email, password}));
     }
+    useEffect(() => {
+      if (isLoggedIn) {
+        navigate('/');
+      }
+    }, [isLoggedIn]);
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 mx-5 md:mx-40 mt-16 border p-5">
         

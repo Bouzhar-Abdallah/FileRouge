@@ -4,8 +4,11 @@ import { Dropdown, Navbar } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutRequest } from "../features/login/loginSlice";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 export default function NavbarComp() {
-  const { user, isLoggedIn, isLoading, role } = useSelector(
+  const navigate = useNavigate();
+  const { user, isLoggedIn, didLogout } = useSelector(
     (state) => state.login
   );
   /* console.log('user', user)
@@ -14,6 +17,12 @@ export default function NavbarComp() {
   const handleLogout = () => {
     dispatch(logoutRequest());
   };
+  console.log(isLoggedIn)
+  useEffect(() => {
+    if (!isLoggedIn && didLogout) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <Navbar className="bg-darkBlue text-white rounded-none" fluid={true} rounded={true}>
