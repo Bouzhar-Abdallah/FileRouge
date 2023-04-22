@@ -9,6 +9,7 @@ const initialState = {
     totalPoints: 0,
     playersCount: 0,
     userOverAllRanking: 0,
+    selectedPlayers: [],
 };
 
 export const getCompetition = createAsyncThunk("competition", async () => {
@@ -22,7 +23,7 @@ export const getCompetition = createAsyncThunk("competition", async () => {
         },
     });
     const data = await response.data;
-    console.log(data);
+    //console.log(data.userSelection.players);
     return data;
 }
 );
@@ -45,6 +46,7 @@ export const competitionSlice = createSlice({
                 state.totalPoints = action.payload.totalPoints;
                 state.playersCount = action.payload.playersCount;
                 state.userOverAllRanking = action.payload.overAllRanking;
+                state.selectedPlayers = action.payload.userSelection.players;
             })
             .addCase(getCompetition.rejected, (state) => {
                 

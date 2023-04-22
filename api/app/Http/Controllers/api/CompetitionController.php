@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Models\Squad;
 use App\Models\UserTotalpoints;
+use App\Models\Week;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -54,21 +55,30 @@ class CompetitionController extends Controller
         });
 
         try {
-            $totalPoints = $user->totalPoints->total_points;   
+            $totalPoints = $user->totalPoints->total_points;
         } catch (Exception $th) {
             $totalPoints = 0;
         }
         try {
-            
+
             $overAllRanking = $user->ranking->ranking;
         } catch (Exception $th) {
             $overAllRanking = 'not ranked';
         }
+/* ************* */
+
+        //get the week with date_limit < now() and the highest week_id
+        $week = Week::where('date_limit', '>', now())->orderBy('week_number', 'asc')->first();
+        $userSelection = $user->selections->where('week_id', $week->id)->first()->load('players.poste', 'players.club');
+
         return response()->json([
             'playersCount' => $playersCount,
             'weeklyPointsPerSelection' => $weeklyPointsPerSelection,
             'totalPoints' => $totalPoints,
             'overAllRanking' => $overAllRanking,
+            'week' => $week,
+            'userSelection' => $userSelection,
         ]);
     }
+
 }

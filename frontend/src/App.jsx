@@ -33,7 +33,7 @@ encryptData({
 }) */
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="">
       <NavbarComp />
 
       <Routes>
