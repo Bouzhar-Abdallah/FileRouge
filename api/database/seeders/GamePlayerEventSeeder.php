@@ -17,8 +17,14 @@ class GamePlayerEventSeeder extends Seeder
      */
     public function run(): void
     {
+        //seed first 10 weeks games
+        /* $games = Week::where('week_number', '<=', 10)->get()->flatMap(function ($week) {
+            return $week->games;
+        }); */
+        //seed only first week games
         $week = Week::first();
         $games = $week->games;
+
         $events = Event::all();
 
         foreach ($games as $game) {
