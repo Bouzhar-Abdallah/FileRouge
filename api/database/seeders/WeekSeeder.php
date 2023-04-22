@@ -17,7 +17,7 @@ class WeekSeeder extends Seeder
         // date_limit is the date limit to make picks for that week, 7 days between each week number
         //date_limit starts at 2023-08-01
         for ($i = 1; $i <= 32; $i++) {
-            $date_limit = date('Y-m-d', strtotime('2023-08-01 +'.($i - 1).' week'));
+            $date_limit = date('Y-m-d', strtotime('2023-04-29 +'.($i - 1).' week'));
             Week::create([
                 'week_number' => $i,
                 'date_limit' => $date_limit,

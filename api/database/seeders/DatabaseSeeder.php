@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             GameSeeder::class,
             UserSelectionSeeder::class,
             SelectedPlayersSeeder::class,
-            GamePlayerEventSeeder::class,
+            //GamePlayerEventSeeder::class,
         ]);
     }
 }

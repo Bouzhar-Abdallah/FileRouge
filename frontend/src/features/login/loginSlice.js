@@ -19,26 +19,26 @@ const initialState = {
 };
 
 export const login = createAsyncThunk("login", async (user) => {
-  console.log('login')
+  //console.log('login')
   try {
     const response = await axios.post(url + "login", user);
     const data = response.data;
     return { data }; // Return only the necessary data
   } catch (error) {
-    console.log(error.response);
+    //console.log(error.response);
     return { data: error.response.data, status: error.response.status };
   }
 });
 
 export const register = createAsyncThunk("register", async (user) => {
-  console.log('user', user)
+  //console.log('user', user)
   try {
     const response = await axios.post(url + "register", user);
     const data = response.data;
-    console.log('data', data)
+    //console.log('data', data)
     return { data }; // Return only the necessary data
   } catch (error) {
-    console.log('error', error)
+    //console.log('error', error)
     return { data: error.response.data, status: error.response.status };
   }
 });
@@ -95,7 +95,7 @@ export const loginSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(login.rejected, (state, action) => {
-        console.log("rejected");
+        //console.log("rejected");
         state.isLoading = false;
         state.error = action.error.message;
       })
@@ -135,7 +135,7 @@ export const loginSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(register.rejected, (state, action) => {
-        console.log("rejected");
+        //console.log("rejected");
         state.isLoading = false;
         state.error = action.error.message;
       }

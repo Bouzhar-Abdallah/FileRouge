@@ -15,6 +15,8 @@ export default {
         'lightGray': '#E2F0FF',
         'darkGray': '#B2C2ED',
         'yellow': '#ffc82c',
+        'gradient1': '#02EFFF',
+        'gradient2': '#627BFF',
       },
       backgroundImage: {
         'pitch': "url('https://res.cloudinary.com/doy8hfzvk/image/upload/v1681842404/afb9101577d749b22e01ff13d32f5f9e_ykgxhl.jpg')",

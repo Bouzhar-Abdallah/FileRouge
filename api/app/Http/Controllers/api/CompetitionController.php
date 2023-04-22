@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Models\Squad;
 use App\Models\UserTotalpoints;
+use Exception;
 use Illuminate\Http\Request;
 
 class CompetitionController extends Controller
@@ -19,7 +20,7 @@ class CompetitionController extends Controller
 
 
         //detailed version :
-        $detailedweeklyPointsPerSelection = $userSelections->map(function ($userSelection) {
+        /* $detailedweeklyPointsPerSelection = $userSelections->map(function ($userSelection) {
             return [
                 'week_id' => $userSelection->week_id,
                 'players' => $userSelection->players->map(function ($player) use ($userSelection) {
@@ -35,7 +36,7 @@ class CompetitionController extends Controller
                     ];
                 }),
             ];
-        });
+        }); */
 
         //less detailed version :
         $weeklyPointsPerSelection = $userSelections->map(function ($userSelection) {
@@ -52,12 +53,19 @@ class CompetitionController extends Controller
             ];
         });
 
-        
-        $totalPoints = $user->totalPoints->total_points;
-        $overAllRanking = $user->ranking->ranking;
+        try {
+            $totalPoints = $user->totalPoints->total_points;   
+        } catch (Exception $th) {
+            $totalPoints = 0;
+        }
+        try {
+            
+            $overAllRanking = $user->ranking->ranking;
+        } catch (Exception $th) {
+            $overAllRanking = 'not ranked';
+        }
         return response()->json([
             'playersCount' => $playersCount,
-            'detailedweeklyPointsPerSelection' => $detailedweeklyPointsPerSelection,
             'weeklyPointsPerSelection' => $weeklyPointsPerSelection,
             'totalPoints' => $totalPoints,
             'overAllRanking' => $overAllRanking,

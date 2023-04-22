@@ -16,7 +16,7 @@ export const getClubs = createAsyncThunk("clubs", async () => {
         const response = await axios.get(url + "getClubs", {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
+                /* Authorization: `Bearer ${token}`, */
                 },
                 });
         const clubs = await response.data;
