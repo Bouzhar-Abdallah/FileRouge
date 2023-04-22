@@ -76,6 +76,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(UserSelection::class);
     }
+    public function totalPoints()
+    {
+        return $this->hasOne(UserTotalPoints::class, 'user_id');
+    }
+    public function ranking()
+    {
+        return $this->hasOne(UserRankings::class, 'user_id');
+    }
 }
 
 

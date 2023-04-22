@@ -8,6 +8,7 @@ const initialState = {
     isLoading: true,
     totalPoints: 0,
     playersCount: 0,
+    userOverAllRanking: 0,
 };
 
 export const getCompetition = createAsyncThunk("competition", async () => {
@@ -43,6 +44,7 @@ export const competitionSlice = createSlice({
                 state.weekPlay = action.payload.weekPlay;
                 state.totalPoints = action.payload.totalPoints;
                 state.playersCount = action.payload.playersCount;
+                state.userOverAllRanking = action.payload.overAllRanking;
             })
             .addCase(getCompetition.rejected, (state) => {
                 

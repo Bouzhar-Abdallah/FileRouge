@@ -8,7 +8,7 @@ import { decryptData } from '../../utilities/functions'
 import { getCompetition } from '../../features/fantazy/competitionSlice'
 export default function Home() {
   const { logo, name, isLoading: isSquadLoding, TotaleValue} = useSelector((state) => state.squad)
-  const { playersCount, isLoading: isCompetitionLoading, totalPoints} = useSelector((state) => state.competition)
+  const { playersCount, isLoading: isCompetitionLoading, totalPoints, userOverAllRanking} = useSelector((state) => state.competition)
   const {user} = decryptData()
   
   const dispatch = useDispatch();
@@ -43,6 +43,10 @@ useEffect(() => {
           <div className="flex py-1 border-t-2 items-center justify-between">
             <h1 className='font-light capitalize'>total points</h1>
             <h1 className='font-light'>{totalPoints}</h1>
+          </div>
+          <div className="flex py-1 border-t-2 items-center justify-between">
+            <h1 className='font-light capitalize'>overall ranking</h1>
+            <h1 className='font-light'>{userOverAllRanking}</h1>
           </div>
           <div className="flex py-1 border-t-2 items-center justify-between">
             <h1 className='font-light capitalize'>total players</h1>
