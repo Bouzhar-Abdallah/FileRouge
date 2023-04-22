@@ -11,9 +11,9 @@ const PrivateRoutes = () => {
   const token = creds.token;
 
   const checkLogin = async () => {
-   /*  if (!token) {
+    if (!token) {
       navigate("/login");
-    } */
+    }
     try {
         const response = await axios.get(url + "checkLogin", {
           headers: {
@@ -23,11 +23,12 @@ const PrivateRoutes = () => {
         });
   
         const data = await response.data;
-        console.log("data", data);
+        //console.log("data", data);
         setLoading(false);
         
       } catch (error) {
         setLoading(false);
+        localStorage.removeItem("creds");
         navigate('/login');
       }
   };

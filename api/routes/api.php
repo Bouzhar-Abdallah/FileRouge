@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\ClubsController;
+use App\Http\Controllers\api\CompetitionController;
 use App\Http\Controllers\api\GameController;
 use App\Http\Controllers\api\PlayerController;
 use App\Http\Controllers\api\SquadController;
@@ -44,6 +45,7 @@ Route::middleware(['auth:api', 'role:user'])->group(function () {
     Route::post('saveNewSquad', [SquadController::class, 'saveNewSquad']);
     Route::get('getLogos', [SquadController::class, 'getLogos']);
     Route::post('saveSelectedPlayers', [SquadController::class, 'saveSelectedPlayers']);
+    Route::get('competition', [CompetitionController::class, 'getCompetition']);
 });
 
 Route::get('getClubs', [ClubsController::class, 'getClubs']);

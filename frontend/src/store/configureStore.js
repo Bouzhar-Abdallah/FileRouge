@@ -6,7 +6,7 @@ import standingsReducer from '../features/standings/standingsSlice';
 import playersReducer from '../features/fantazy/playersSlice';
 import squadReducer from '../features/fantazy/squadSlice';
 import clubsReducer from '../features/clubs/clubsSlice';
-
+import competitionReducer from '../features/fantazy/competitionSlice';
 const store = configureStore({
   reducer: {
     fixtures: fixturesReducer,
@@ -15,6 +15,7 @@ const store = configureStore({
     players: playersReducer,
     squad: squadReducer,
     clubs: clubsReducer,
+    competition: competitionReducer,
   },
 });
 

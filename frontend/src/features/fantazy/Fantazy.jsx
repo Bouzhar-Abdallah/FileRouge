@@ -14,7 +14,6 @@ export default function Fantazy() {
   const { isLoading, hasSelection} = useSelector(
     (state) => state.squad
   );
-  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSquad());
