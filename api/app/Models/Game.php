@@ -31,7 +31,10 @@ class Game extends Model
     {
         return $this->hasOne(GamesResult::class);
     }
-
+    public function gamePlayerEvents()
+    {
+        return $this->hasMany(GamePlayerEvent::class);
+    }
     public static function getGamesGroupedByWeek()
     {
         /* $weeks = Week::with(

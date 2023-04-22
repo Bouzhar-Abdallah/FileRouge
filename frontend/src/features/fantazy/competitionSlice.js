@@ -6,7 +6,7 @@ import axios from "axios";
 const initialState = {
     weekPlay: 0,
     isLoading: true,
-    totalPooints: 0,
+    totalPoints: 0,
     playersCount: 0,
 };
 
@@ -41,7 +41,7 @@ export const competitionSlice = createSlice({
                 
                 state.isLoading = false;
                 state.weekPlay = action.payload.weekPlay;
-                state.totalPooints = action.payload.totalPooints;
+                state.totalPoints = action.payload.totalPoints;
                 state.playersCount = action.payload.playersCount;
             })
             .addCase(getCompetition.rejected, (state) => {

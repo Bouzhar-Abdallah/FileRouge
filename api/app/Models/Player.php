@@ -32,10 +32,14 @@ class Player extends Model
             'event_poste_id' // Local key on game_player_events table
         );
     }
-    public function gameEvents()
+    public function gamePlayerEvents()
+{
+    return $this->hasMany(GamePlayerEvent::class);
+}
+/*     public function gameEvents()
     {
         return $this->hasMany(GamePlayerEvent::class);
-    }
+    } */
     public function getPointsForGame($game_id)
     {
         return $this->gamePlayerEvents()
@@ -49,6 +53,12 @@ class Player extends Model
             })
             ->sum();
     }
+    public function games()
+{
+    return $this->belongsToMany(Game::class, 'game_player_events')
+                ->using(GamePlayerEvent::class)
+                ->withPivot('event_id');
+}
     public function getWeeklyPoints()
     {
         return $this->games()
