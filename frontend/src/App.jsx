@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { checkUser } from "./features/login/loginSlice";
 import { ToastContainer, toast } from "react-toastify";
 import PrivateRoutes from "./utilities/PrivateRoutes";
+import AdminRoutes from "./utilities/AdminRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import { decryptData, encryptData } from "./utilities/functions";
 import { getClubs } from "./features/clubs/clubsSlice";
@@ -43,6 +44,10 @@ encryptData({
           <Route path="/fantazy" element={<Fantazy />} />
           <Route path="/selection" element={<Selection path="Week Selection" />} />
           <Route path="/competition" element={<Competition path="Competition" />} />
+        </Route>
+        <Route element={<AdminRoutes />}>
+          <Route path="/admin" element={<div>Admin</div>} />
+        
         </Route>
         <Route path="/" element={<Standings />} />
         <Route path="/fixtures" element={<Fixtures />} />

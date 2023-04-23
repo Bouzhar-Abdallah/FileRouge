@@ -59,11 +59,14 @@ Route::post('saveNewSquad', [SquadController::class, 'saveNewSquad']);
 Route::get('getLogos', [SquadController::class, 'getLogos']); */
 
 
-/* // Routes that require the 'admin' role
+// Routes that require the 'admin' role
 Route::middleware(['auth:api', 'role:admin'])->group(function () {
+    Route::get('admin', function () {
+        return response()->json(['message' => 'Admin']);
+    });
 });
 
- */
+
 
 
 
