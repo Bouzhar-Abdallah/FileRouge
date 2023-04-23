@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Button } from "flowbite-react";
 import ProgressComp from "../elements/ProgressComp";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import PlayersC from "./PlayersC";
 import Loading from "../Loading";
 import { getPlayers } from "../../features/fantazy/playersSlice";
@@ -19,6 +20,9 @@ export default function CreateSquad() {
   const { name, isLoading, logoURL, logos, hasStarted, step } =
     useSelector((state) => state.squad);
 
+    
+
+    
 
   const dispatch = useDispatch();
   useEffect(() => {

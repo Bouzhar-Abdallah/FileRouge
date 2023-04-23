@@ -48,6 +48,7 @@ Route::middleware(['auth:api', 'role:user'])->group(function () {
     Route::post('saveSelectedPlayers', [SquadController::class, 'saveSelectedPlayers']);
     Route::get('competition', [CompetitionController::class, 'getCompetition']);
     Route::get('selection', [SelectionController::class, 'getSelection']);
+    Route::post('saveSelection', [SelectionController::class, 'saveSelection']);
     
 });
 

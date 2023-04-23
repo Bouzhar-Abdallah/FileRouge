@@ -212,6 +212,7 @@ export const squadSlice = createSlice({
         state.isLoading = false;
         if (action.payload.status === 201) {
           toast.success("your selection has been saved");
+          state.step = 4;
         } else {
           toast.error("an error occured");
         }

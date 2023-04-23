@@ -11,6 +11,7 @@ import { getSquad } from "../../features/fantazy/squadSlice";
 import { getBgColor } from "../../utilities/functions";
 import CompetitionInfo from "../elements/CompetitionInfo";
 import { addPlayer, removePlayer } from "../../features/fantazy/selectionSlice";
+import { saveSelection } from "../../features/fantazy/selectionSlice";
 export default function selection() {
   const { isLoading: isSquadLoding, players: squadPlayers } = useSelector(
     (state) => state.squad
@@ -19,7 +20,7 @@ export default function selection() {
   const {
     weekPlay,
     isLoading: isSelectionLoading,
-    hasSelection,
+    readyToSave,
     selectedPlayers,
   } = useSelector((state) => state.selection);
 
@@ -69,11 +70,11 @@ export default function selection() {
     return <Loading />;
   }
 
-
   return (
     <>
       <HomeHeader />
       <div className="text-darkBlue m-5 flex justify-between">
+      
         <div className="w-full  md:mr-5 ">
           <div className="rounded-md bg-gradient-to-b from-gradient1 to-transparent w-full  py-4 px-2">
             <div className=" bg-white/60 rounded-md">
@@ -86,14 +87,17 @@ export default function selection() {
               </div>
             </div>
           </div>
+          
           <div className="relative lg:h-[740px] md:h-[550px] sm:h-[400px] mx-auto">
             <div className="relative z-10 flex items-center h-full justify-between pr-44 pl-16 ">
-              <button
+              {goalkeepers[0] && (
+
+                <button
                 onClick={() => {
                   dispatch(removePlayer(player));
                 }}
                 className=""
-              >
+                >
                 <img className="w-10" src={playerIconUrl} alt="" />
                 <div className="border-l-4 border-l-black bg-gradient-to-r from-gray-300 to-transparent">
                   <h1 className="font-light text-sm py-1">
@@ -101,6 +105,7 @@ export default function selection() {
                   </h1>
                 </div>
               </button>
+                )}
               <div className=" flex flex-col justify-between h-4/5">
                 {defenders.map((player) => (
                   <button
@@ -173,6 +178,14 @@ export default function selection() {
                 </div>
               </div>
             </div>
+            { readyToSave && (
+
+              <button onClick={()=> {
+                console.log('clicked')
+                dispatch(saveSelection())}} className="bg-gradient-to-r from-darkGray to-gradient2 px-3 py-2 rounded-md mx-auto my-2">save this week selection</button>
+            )}
+
+
             <div className="flex flex-col m-2 gap-2">
               {Sgoalkeepers.map((player) => (
                 <div key={player.id}>
@@ -187,12 +200,25 @@ export default function selection() {
                       {player.poste?.name.substring(0, 3)}
                     </h1>
                     <h1 className="px-2 py-1">{player?.name}</h1>
-                    <button
+                    <button className="ml-auto"
                       onClick={() => {
                         dispatch(addPlayer(player));
                       }}
                     >
-                      add
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
                     </button>
                   </div>
                   <hr />
@@ -211,12 +237,25 @@ export default function selection() {
                       {player.poste?.name.substring(0, 3)}
                     </h1>
                     <h1 className="px-2 py-1">{player?.name}</h1>
-                    <button
+                    <button className="ml-auto"
                       onClick={() => {
                         dispatch(addPlayer(player));
                       }}
                     >
-                      add
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
                     </button>
                   </div>
                   <hr />
@@ -235,12 +274,25 @@ export default function selection() {
                       {player.poste?.name.substring(0, 3)}
                     </h1>
                     <h1 className="px-2 py-1">{player?.name}</h1>
-                    <button
+                    <button className="ml-auto"
                       onClick={() => {
                         dispatch(addPlayer(player));
                       }}
                     >
-                      add
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
                     </button>
                   </div>
                   <hr />
@@ -259,12 +311,25 @@ export default function selection() {
                       {player.poste?.name.substring(0, 3)}
                     </h1>
                     <h1 className="px-2 py-1">{player?.name}</h1>
-                    <button
+                    <button className="ml-auto"
                       onClick={() => {
                         dispatch(addPlayer(player));
                       }}
                     >
-                      add
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
                     </button>
                   </div>
                   <hr />
