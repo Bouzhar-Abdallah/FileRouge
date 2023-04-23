@@ -28,7 +28,17 @@ export const getSelection = createAsyncThunk("selection", async () => {
 export const selectionSlice = createSlice({
     name: "selection",
     initialState,
-    reducers: {},
+    reducers: {
+        addPlayer:(state, action) =>{
+            state.selectedPlayers.push(action.payload);
+            if (!state.hasSelection) {
+                state.hasSelection = true;
+            }
+        },
+        removePlayer:(state, action) =>{
+            state.selectedPlayers = state.selectedPlayers.filter(player => player.id !== action.payload.id);
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getSelection.pending, (state) => {
@@ -48,5 +58,7 @@ export const selectionSlice = createSlice({
             });
     }
 });
+
+export const { addPlayer, removePlayer } = selectionSlice.actions;
 
 export default selectionSlice.reducer;
