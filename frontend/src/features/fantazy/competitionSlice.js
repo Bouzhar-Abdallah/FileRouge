@@ -9,6 +9,7 @@ const initialState = {
   totalPoints: 0,
   playersCount: 0,
   userOverAllRanking: 0,
+  weeklyPointsPerSelection: [],
   selectedPlayers: [
     {
       name: "Goalkeeper",
@@ -123,7 +124,7 @@ export const getCompetition = createAsyncThunk("competition", async () => {
     },
   });
   const data = await response.data;
-  //console.log(data.userSelection.players);
+  console.log(data)
   return data;
 });
 
@@ -134,17 +135,18 @@ export const competitionSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCompetition.pending, (state) => {
-        console.log("pending");
+        
         state.isLoading = true;
       })
       .addCase(getCompetition.fulfilled, (state, action) => {
         
-        console.log(action.payload);
+        
         state.isLoading = false;
         state.playersCount = action.payload.playersCount;
         state.weekPlay = action.payload.weekPlay;
         state.totalPoints = action.payload.totalPoints;
         state.userOverAllRanking = action.payload.overAllRanking;
+        state.weeklyPointsPerSelection=action.payload.weeklyPointsPerSelection
         /* 
         state.selectedPlayers = action.payload.userSelection.players; */
       })

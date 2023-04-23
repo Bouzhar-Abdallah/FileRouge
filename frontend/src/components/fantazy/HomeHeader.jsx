@@ -53,9 +53,9 @@ export default function HomeHeader({ path }) {
               Competition
             </button>
           ) : (
-            <button className="mx-1 rounded-lg rounded-b-none hover:bg-white bg-lightBlue px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50">
+            <Link to="/competition" className="mx-1 rounded-lg rounded-b-none hover:bg-white bg-lightBlue px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50">
               Competition
-            </button>
+            </Link >
           )}
         </div>
         )}

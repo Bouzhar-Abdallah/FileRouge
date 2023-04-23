@@ -62,11 +62,12 @@ export default function selection({ path }) {
     dispatch(getCompetition());
     dispatch(getSelection());
     dispatch(getSquad());
-  }, [dispatch]);
+  }, []);
 
   const playerIconUrl =
     "https://res.cloudinary.com/doy8hfzvk/image/upload/v1681843437/soccer-player-people-and-clothing-icons-with-white-background-free-vector_1_-removebg-preview_rvhsoh.png";
 
+    
   if (isSelectionLoading || isSquadLoding) {
     return(
     <>
@@ -83,11 +84,11 @@ export default function selection({ path }) {
           <div className="rounded-md bg-gradient-to-b from-gradient1 to-transparent w-full  py-4 px-2">
             <div className=" bg-white/60 rounded-md">
               <div className="bg-darkBlue text-lightGray flex justify-center items-center mx-5 rounded-lg rounded-t-none font-bold py-0.5">
-                <h1>gameweek 1</h1>
+                <h1>gameweek {weekPlay?.week_number}</h1>
               </div>
               <div className="flex justify-center items-center font-normal py-2">
-                <span className="font-light mr-2">Gameweek 1 deadline: </span>
-                <span className="font-bold"> Tue 25 Apr At 00:00</span>
+                <span className="font-light mr-2">Gameweek {weekPlay?.week_number} deadline: </span>
+                <span className="font-bold"> {weekPlay?.date_limit} At 00:00</span>
               </div>
             </div>
           </div>
@@ -184,7 +185,7 @@ export default function selection({ path }) {
             {readyToSave && (
               <button
                 onClick={() => {
-                  console.log("clicked");
+                  
                   dispatch(saveSelection());
                 }}
                 className="bg-gradient-to-r from-darkGray to-gradient2 px-3 py-2 rounded-md mx-auto my-2"

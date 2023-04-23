@@ -18,10 +18,10 @@ class CompetitionController extends Controller
         $playersCount = Squad::count();
         $user = auth()->user();
         $userSelections = $user->selections->load('players');
-
+        $week = Week::where('date_limit', '>', now())->orderBy('week_number', 'asc')->first();
 
         //detailed version :
-        /* $detailedweeklyPointsPerSelection = $userSelections->map(function ($userSelection) {
+        $detailedweeklyPointsPerSelection = $userSelections->map(function ($userSelection) {
             return [
                 'week_id' => $userSelection->week_id,
                 'players' => $userSelection->players->map(function ($player) use ($userSelection) {
@@ -37,7 +37,7 @@ class CompetitionController extends Controller
                     ];
                 }),
             ];
-        }); */
+        });
 
         //less detailed version :
         $weeklyPointsPerSelection = $userSelections->map(function ($userSelection) {
@@ -67,8 +67,8 @@ class CompetitionController extends Controller
         }
 /* ************* */
 
-        //get the week with date_limit < now() and the highest week_id
-        $week = Week::where('date_limit', '>', now())->orderBy('week_number', 'asc')->first();
+        
+        
         
         return response()->json([
             'playersCount' => $playersCount,
@@ -76,6 +76,7 @@ class CompetitionController extends Controller
             'totalPoints' => $totalPoints,
             'overAllRanking' => $overAllRanking,
             'week' => $week,
+            'detailedweeklyPointsPerSelection' => $detailedweeklyPointsPerSelection,
         ]);
     }
 

@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { decryptData, encryptData } from "./utilities/functions";
 import { getClubs } from "./features/clubs/clubsSlice";
 import Selection from "./components/fantazy/Selection";
+import Competition from "./components/fantazy/Competition";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -41,6 +42,7 @@ encryptData({
         
           <Route path="/fantazy" element={<Fantazy />} />
           <Route path="/selection" element={<Selection path="Week Selection" />} />
+          <Route path="/competition" element={<Competition path="Competition" />} />
         </Route>
         <Route path="/" element={<Standings />} />
         <Route path="/fixtures" element={<Fixtures />} />

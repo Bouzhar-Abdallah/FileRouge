@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const initialState = {
-  weekPlay: 0,
+  weekPlay: null,
   isLoading: true,
   hasSelection: false,
   readyToSave: false,
@@ -35,7 +35,7 @@ export const saveSelection = createAsyncThunk(
     const state = thunkAPI.getState().selection
     const selection = state.selectedPlayers
     const ids = selection.map((item) => item.id);
-    console.log(ids)
+    
     const response = await axios.post(baseURL + "saveSelection", ids, {
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const saveSelection = createAsyncThunk(
       },
     });
     const data = await response.data;
-    console.log(data);
+    
     return data;
   }
 );
@@ -121,7 +121,7 @@ export const selectionSlice = createSlice({
       })
       .addCase(getSelection.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.weekPlay = action.payload.weekPlay;
+        state.weekPlay = action.payload.week;
         state.hasSelection = action.payload.hasSelection;
         state.selectedPlayers = action.payload.selectedPlayers;
       })

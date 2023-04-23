@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getCompetition } from "../../features/fantazy/competitionSlice";
 import { getSquad } from "../../features/fantazy/squadSlice";
+
 export default function CompetitionInfo() {
   const { user } = decryptData();
-  /*     const { logo, name, TotaleValue, totalPoints, userOverAllRanking, playersCount } = user.competition; */
+  
   const {
     logo,
     name,
@@ -21,10 +22,10 @@ export default function CompetitionInfo() {
     userOverAllRanking,
     selectedPlayers,
   } = useSelector((state) => state.competition);
+
 if (isCompetitionLoading) {
   return <h1>loading</h1>
 }
- console.log(isCompetitionLoading)   
   return (
     <div className=" h-fit w-96 flex flex-col shadow-lg rounded-lg rounded-b-none overflow-hidden">
       <div className="flex bg-gradient-to-r from-lightGray to-darkGray items-center justify-between py-2 px-3">
