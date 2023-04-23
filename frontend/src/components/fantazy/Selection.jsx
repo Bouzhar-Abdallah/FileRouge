@@ -12,8 +12,7 @@ import { getBgColor } from "../../utilities/functions";
 import CompetitionInfo from "../elements/CompetitionInfo";
 import { addPlayer, removePlayer } from "../../features/fantazy/selectionSlice";
 import { saveSelection } from "../../features/fantazy/selectionSlice";
-export default function selection({path}) {
-  
+export default function selection({ path }) {
   const { isLoading: isSquadLoding, players: squadPlayers } = useSelector(
     (state) => state.squad
   );
@@ -68,14 +67,17 @@ export default function selection({path}) {
     "https://res.cloudinary.com/doy8hfzvk/image/upload/v1681843437/soccer-player-people-and-clothing-icons-with-white-background-free-vector_1_-removebg-preview_rvhsoh.png";
 
   if (isSelectionLoading || isSquadLoding) {
-    return <Loading />;
+    return(
+    <>
+      <HomeHeader path={path} />
+      <Loading />
+    </>)
   }
 
   return (
     <>
-      <HomeHeader path={path}/>
+      <HomeHeader path={path} />
       <div className="text-darkBlue m-5 flex justify-between">
-      
         <div className="w-full  md:mr-5 ">
           <div className="rounded-md bg-gradient-to-b from-gradient1 to-transparent w-full  py-4 px-2">
             <div className=" bg-white/60 rounded-md">
@@ -88,25 +90,24 @@ export default function selection({path}) {
               </div>
             </div>
           </div>
-          
+
           <div className="relative lg:h-[740px] md:h-[550px] sm:h-[400px] mx-auto">
             <div className="relative z-10 flex items-center h-full justify-between pr-44 pl-16 ">
               {goalkeepers[0] && (
-
                 <button
-                onClick={() => {
-                  dispatch(removePlayer(player));
-                }}
-                className=""
+                  onClick={() => {
+                    dispatch(removePlayer(player));
+                  }}
+                  className=""
                 >
-                <img className="w-10" src={playerIconUrl} alt="" />
-                <div className="border-l-4 border-l-black bg-gradient-to-r from-gray-300 to-transparent">
-                  <h1 className="font-light text-sm py-1">
-                    {goalkeepers[0]?.name}
-                  </h1>
-                </div>
-              </button>
-                )}
+                  <img className="w-10" src={playerIconUrl} alt="" />
+                  <div className="border-l-4 border-l-black bg-gradient-to-r from-gray-300 to-transparent">
+                    <h1 className="font-light text-sm py-1">
+                      {goalkeepers[0]?.name}
+                    </h1>
+                  </div>
+                </button>
+              )}
               <div className=" flex flex-col justify-between h-4/5">
                 {defenders.map((player) => (
                   <button
@@ -179,13 +180,17 @@ export default function selection({path}) {
                 </div>
               </div>
             </div>
-            { readyToSave && (
-
-              <button onClick={()=> {
-                console.log('clicked')
-                dispatch(saveSelection())}} className="bg-gradient-to-r from-darkGray to-gradient2 px-3 py-2 rounded-md mx-auto my-2">save this week selection</button>
+            {readyToSave && (
+              <button
+                onClick={() => {
+                  console.log("clicked");
+                  dispatch(saveSelection());
+                }}
+                className="bg-gradient-to-r from-darkGray to-gradient2 px-3 py-2 rounded-md mx-auto my-2"
+              >
+                save this week selection
+              </button>
             )}
-
 
             <div className="flex flex-col m-2 gap-2">
               {Sgoalkeepers.map((player) => (
@@ -201,7 +206,8 @@ export default function selection({path}) {
                       {player.poste?.name.substring(0, 3)}
                     </h1>
                     <h1 className="px-2 py-1">{player?.name}</h1>
-                    <button className="ml-auto"
+                    <button
+                      className="ml-auto"
                       onClick={() => {
                         dispatch(addPlayer(player));
                       }}
@@ -238,7 +244,8 @@ export default function selection({path}) {
                       {player.poste?.name.substring(0, 3)}
                     </h1>
                     <h1 className="px-2 py-1">{player?.name}</h1>
-                    <button className="ml-auto"
+                    <button
+                      className="ml-auto"
                       onClick={() => {
                         dispatch(addPlayer(player));
                       }}
@@ -275,7 +282,8 @@ export default function selection({path}) {
                       {player.poste?.name.substring(0, 3)}
                     </h1>
                     <h1 className="px-2 py-1">{player?.name}</h1>
-                    <button className="ml-auto"
+                    <button
+                      className="ml-auto"
                       onClick={() => {
                         dispatch(addPlayer(player));
                       }}
@@ -312,7 +320,8 @@ export default function selection({path}) {
                       {player.poste?.name.substring(0, 3)}
                     </h1>
                     <h1 className="px-2 py-1">{player?.name}</h1>
-                    <button className="ml-auto"
+                    <button
+                      className="ml-auto"
                       onClick={() => {
                         dispatch(addPlayer(player));
                       }}

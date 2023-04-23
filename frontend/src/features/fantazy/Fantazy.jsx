@@ -9,6 +9,7 @@ import Loading from "../../components/Loading";
 import Squad from "../../components/fantazy/Squad";
 import CreateSquad from "../../components/fantazy/CreateSquad";
 import Home from "../../components/fantazy/Home";
+import HomeHeader from "../../components/fantazy/HomeHeader";
 
 export default function Fantazy() {
   const { isLoading, hasSelection} = useSelector(
@@ -20,7 +21,13 @@ export default function Fantazy() {
   }, []);
 
   if (isLoading) {
-    return <Loading />;
+    
+    return (
+      <>
+      <HomeHeader path="Home"/>
+      <Loading />
+      </>
+    )
   }
 
   if (hasSelection) {

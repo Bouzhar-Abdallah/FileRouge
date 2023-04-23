@@ -21,13 +21,13 @@ export default function HomeHeader({ path }) {
       <div className="flex justify-center relative">
         <div className="flex absolute bottom-0">
           {path === "Home" ? (
-            <button className="mx-1 rounded-lg rounded-b-none bg-darkGray px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50">
+            <Link to="/fantazy" className="mx-1 rounded-lg rounded-b-none bg-darkGray px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50">
               Home
-            </button>
+            </Link>
           ) : (
-            <button className="mx-1 rounded-lg rounded-b-none hover:bg-white bg-lightBlue px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50">
+            <Link to="/fantazy" className="mx-1 rounded-lg rounded-b-none hover:bg-white bg-lightBlue px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50">
               Home
-            </button>
+            </Link>
           )}
 
           {path === "Week Selection" ? (
