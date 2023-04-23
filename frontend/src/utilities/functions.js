@@ -37,3 +37,25 @@ export const getBgColor = (posteName) => {
       return "bg-gray-100";
   }
 }
+
+export const getRandomSquad = (players) => {
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
+
+  const filterAndShuffle = (array, position) => {
+    const filtered = array.filter(player => player.poste.name === position);
+    shuffleArray(filtered);
+    return filtered;
+  };
+
+  const goalkeepers = filterAndShuffle(players, 'Goalkeeper').slice(0, 2);
+  const defenders = filterAndShuffle(players, 'Defender').slice(0, 5);
+  const midfielders = filterAndShuffle(players, 'Midfielder').slice(0, 5);
+  const forwards = filterAndShuffle(players, 'Forward').slice(0, 4);
+
+  return [...goalkeepers, ...defenders, ...midfielders, ...forwards];
+};

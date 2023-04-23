@@ -38,6 +38,7 @@ encryptData({
 
       <Routes>
         <Route element={<PrivateRoutes />}>
+        
           <Route path="/fantazy" element={<Fantazy />} />
           <Route path="/selection" element={<Selection path="Week Selection" />} />
         </Route>

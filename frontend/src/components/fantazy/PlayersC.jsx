@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPlayers } from "../../features/fantazy/playersSlice";
-import { selectPlayer, setRandomSquad } from "../../features/fantazy/squadSlice";
+import { getRandomSquad } from "../../utilities/functions";
+import {
+  selectPlayer,
+  setRandomSquad,
+} from "../../features/fantazy/squadSlice";
 import Loading from "../Loading";
 export default function PlayersC() {
   const { players, isLoading } = useSelector((state) => state.players);
@@ -28,25 +32,26 @@ export default function PlayersC() {
     });
     setPlayersFiltered(filteredPlayers);
   };
-/*  */
-const RandomSquad = () => {
-  let randomPlayers = [];
-  let numPlayers = 16;
-  let maxTries = 100;
+  /*  */
+  const RandomSquad = () => {
+    let randomPlayers = [];
+    /* let numPlayers = 16;
+    let maxTries = 100;
 
-  while (randomPlayers.length < numPlayers && maxTries > 0) {
-    let randomIndex = Math.floor(Math.random() * players.length);
-    let randomPlayer = players[randomIndex];
+    while (randomPlayers.length < numPlayers && maxTries > 0) {
+      let randomIndex = Math.floor(Math.random() * players.length);
+      let randomPlayer = players[randomIndex];
 
-    if (!randomPlayers.includes(randomPlayer)) {
-      randomPlayers.push(randomPlayer);
-    }
+      if (!randomPlayers.includes(randomPlayer)) {
+        randomPlayers.push(randomPlayer);
+      }
 
-    maxTries--;
-  }
-  dispatch(setRandomSquad(randomPlayers)); 
-};
-/*  */
+      maxTries--;
+    } */
+    randomPlayers = getRandomSquad(players);
+    dispatch(setRandomSquad(randomPlayers));
+  };
+  /*  */
   useEffect(() => {
     filterPlayers();
   }, [club, poste, search]);
@@ -56,7 +61,17 @@ const RandomSquad = () => {
       <div className="antialiased font-sans ">
         <div className="container mx-auto">
           <div className="">
-            <div className="">
+            <div className="flex flex-row-reverse justify-between">
+                  <div className="relative">
+                    <button
+                      onClick={() => {
+                        RandomSquad();
+                      }}
+                      className="py-2 px-5 rounded-md font-bold bg-gradient-to-l from-darkGray to-gradient2 capitalize"
+                    >
+                      select random
+                    </button>
+                  </div>
               <div className=" my-2 flex sm:flex-row flex-col justify-center">
                 <div className="flex flex-row mb-1 sm:mb-0">
                   <div className="relative">
@@ -113,17 +128,12 @@ const RandomSquad = () => {
                     </svg>
                   </span>
                   <input
-                  onChange={(e) => setSearch(e.target.value)}
+                    onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search"
                     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
                   />
                 </div>
               </div>
-              <button onClick={
-                () => {
-                  RandomSquad();
-                }
-              } className="p-3 bg-indigo-500">test</button>
             </div>
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8  overflow-x-auto">
               <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">

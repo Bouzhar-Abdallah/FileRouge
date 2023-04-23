@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 const url = "http://localhost:8090/api/";
 
 const initialState = {
+  
   name: "",
   hasStarted: false,
   hasFinished: false,
@@ -27,6 +28,7 @@ const initialState = {
 };
 
 export const getSquad = createAsyncThunk("squad", async () => {
+  
   const creds = decryptData();
   const token = creds.token;
   const response = await axios.get(url + "squad", {
@@ -211,7 +213,7 @@ export const squadSlice = createSlice({
       .addCase(saveSelectedPlayers.fulfilled, (state, action) => {
         state.isLoading = false;
         if (action.payload.status === 201) {
-          toast.success("your selection has been saved");
+          toast.success("your Squad has been saved");
           state.hasSelection = true;
         } else {
           toast.error("an error occured");

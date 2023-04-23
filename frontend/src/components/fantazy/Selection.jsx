@@ -59,6 +59,7 @@ export default function selection({ path }) {
   );
 
   useEffect(() => {
+    dispatch(getCompetition());
     dispatch(getSelection());
     dispatch(getSquad());
   }, [dispatch]);

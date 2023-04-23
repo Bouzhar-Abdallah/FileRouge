@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 export default function HomeHeader({ path }) {
-  console.log(path);
+  
   return (
     <div className="mt-4 bg-gradient-to-r from-lightGray to-darkGray">
       <div className="pt-5 flex justify-between items-center">
@@ -19,6 +19,9 @@ export default function HomeHeader({ path }) {
         </div>
       </div>
       <div className="flex justify-center relative">
+        {path != "Guest" && (
+
+        
         <div className="flex absolute bottom-0">
           {path === "Home" ? (
             <Link to="/fantazy" className="mx-1 rounded-lg rounded-b-none bg-darkGray px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50">
@@ -55,6 +58,7 @@ export default function HomeHeader({ path }) {
             </button>
           )}
         </div>
+        )}
       </div>
     </div>
   );
