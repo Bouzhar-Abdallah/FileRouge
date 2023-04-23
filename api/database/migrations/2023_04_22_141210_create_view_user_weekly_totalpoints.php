@@ -12,9 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-       DB::statement('DROP VIEW IF EXISTS user_weekly_totalpoints');
+       DB::statement('DROP VIEW IF EXISTS user_weekly_total_points');
         DB::statement("
-        CREATE VIEW user_weekly_totalpoints AS
+        CREATE VIEW user_weekly_total_points AS
     SELECT
     users.id AS user_id,
     user_selections.week_id AS week_id,
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement('DROP VIEW IF EXISTS user_weekly_totalpoints');
+        DB::statement('DROP VIEW IF EXISTS user_weekly_total_points');
     }
 };
