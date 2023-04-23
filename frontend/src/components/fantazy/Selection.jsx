@@ -12,7 +12,8 @@ import { getBgColor } from "../../utilities/functions";
 import CompetitionInfo from "../elements/CompetitionInfo";
 import { addPlayer, removePlayer } from "../../features/fantazy/selectionSlice";
 import { saveSelection } from "../../features/fantazy/selectionSlice";
-export default function selection() {
+export default function selection({path}) {
+  
   const { isLoading: isSquadLoding, players: squadPlayers } = useSelector(
     (state) => state.squad
   );
@@ -72,7 +73,7 @@ export default function selection() {
 
   return (
     <>
-      <HomeHeader />
+      <HomeHeader path={path}/>
       <div className="text-darkBlue m-5 flex justify-between">
       
         <div className="w-full  md:mr-5 ">

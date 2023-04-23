@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <>
-      <HomeHeader />
+      <HomeHeader path="Home"/>
 <h1>home</h1>
     </>
   );
