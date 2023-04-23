@@ -175,7 +175,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col m-2 gap-2">
               {substitutes.map((player) => (
-                <>
+                <div key={player.id}>
                   <div
                     className={`flex items-center border-l-4  ${
                       getBgColor(player.poste.name).e
@@ -189,7 +189,7 @@ export default function Home() {
                     <h1 className="px-2 py-1">{player.name}</h1>
                   </div>
                   <hr />
-                </>
+                </div>
               ))}
             </div>
           </div>

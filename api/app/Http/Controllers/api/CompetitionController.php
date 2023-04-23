@@ -69,7 +69,10 @@ class CompetitionController extends Controller
 
         //get the week with date_limit < now() and the highest week_id
         $week = Week::where('date_limit', '>', now())->orderBy('week_number', 'asc')->first();
-        $userSelection = $user->selections->where('week_id', $week->id)->first()->load('players.poste', 'players.club');
+        $userSelection = $user->selections()
+                ->where('week_id', $week->id)
+                ->with('players.poste', 'players.club')
+                ->first();
 
         return response()->json([
             'playersCount' => $playersCount,

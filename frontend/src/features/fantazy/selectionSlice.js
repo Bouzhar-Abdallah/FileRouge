@@ -6,53 +6,47 @@ import axios from "axios";
 const initialState = {
     weekPlay: 0,
     isLoading: true,
-    totalPoints: 0,
-    playersCount: 0,
-    userOverAllRanking: 0,
+    hasSelection: false,
     selectedPlayers: [],
 };
 
-export const getCompetition = createAsyncThunk("competition", async () => {
+export const getSelection = createAsyncThunk("selection", async () => {
     const creds = decryptData();
     const token = creds.token;
     
-    const response = await axios.get(baseURL + "competition", {
+    const response = await axios.get(baseURL + "selection", {
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
     });
     const data = await response.data;
-    //console.log(data.userSelection.players);
+   console.log(data);
     return data;
-}
-);
+});
 
-
-export const competitionSlice = createSlice({
-    name: "competition",
+export const selectionSlice = createSlice({
+    name: "selection",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getCompetition.pending, (state) => {
+            .addCase(getSelection.pending, (state) => {
                 
                 state.isLoading = true;
             })
-            .addCase(getCompetition.fulfilled, (state, action) => {
-                //console.log(action.payload)
+            .addCase(getSelection.fulfilled, (state, action) => {
+                
                 state.isLoading = false;
                 state.weekPlay = action.payload.weekPlay;
-                state.totalPoints = action.payload.totalPoints;
-                state.playersCount = action.payload.playersCount;
-                state.userOverAllRanking = action.payload.overAllRanking;
-                state.selectedPlayers = action.payload.userSelection.players;
+                state.hasSelection = action.payload.hasSelection;
+                state.selectedPlayers = action.payload.selectedPlayers;
             })
-            .addCase(getCompetition.rejected, (state) => {
+            .addCase(getSelection.rejected, (state) => {
                 
                 state.isLoading = false;
             });
-    },
+    }
 });
 
-export default competitionSlice.reducer;
+export default selectionSlice.reducer;

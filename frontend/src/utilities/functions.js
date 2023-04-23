@@ -22,3 +22,18 @@ export const decryptData = ( passphrase= "jhd") => {
     return {"token":null,"user":null};
   }
 };
+
+export const getBgColor = (posteName) => {
+  switch (posteName) {
+    case "Goalkeeper":
+      return { d: "border-l-black", e: "from-gray-300" };
+    case "Defender":
+      return { d: "border-l-blue-700", e: "from-blue-200" };
+    case "Midfielder":
+      return { d: "border-l-green-700", e: "from-green-200" };
+    case "Forward":
+      return { d: "border-l-red-700", e: "from-red-200" };
+    default:
+      return "bg-gray-100";
+  }
+}

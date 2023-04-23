@@ -7,6 +7,7 @@ use App\Http\Controllers\api\PlayerController;
 use App\Http\Controllers\api\SquadController;
 use App\Http\Controllers\api\StandingsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\api\SelectionController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,8 @@ Route::middleware(['auth:api', 'role:user'])->group(function () {
     Route::get('getLogos', [SquadController::class, 'getLogos']);
     Route::post('saveSelectedPlayers', [SquadController::class, 'saveSelectedPlayers']);
     Route::get('competition', [CompetitionController::class, 'getCompetition']);
+    Route::get('selection', [SelectionController::class, 'getSelection']);
+    
 });
 
 Route::get('getClubs', [ClubsController::class, 'getClubs']);

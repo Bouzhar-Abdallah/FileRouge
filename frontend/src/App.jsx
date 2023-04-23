@@ -13,7 +13,7 @@ import PrivateRoutes from "./utilities/PrivateRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import { decryptData, encryptData } from "./utilities/functions";
 import { getClubs } from "./features/clubs/clubsSlice";
-
+import Selection from "./components/fantazy/Selection";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -39,6 +39,7 @@ encryptData({
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/fantazy" element={<Fantazy />} />
+          <Route path="/selection" element={<Selection />} />
         </Route>
         <Route path="/" element={<Standings />} />
         <Route path="/fixtures" element={<Fixtures />} />
