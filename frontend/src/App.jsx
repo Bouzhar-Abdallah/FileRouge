@@ -18,6 +18,9 @@ import Selection from "./components/fantazy/Selection";
 import Competition from "./components/fantazy/Competition";
 import AdminHome from "./components/admin/AdminHome";
 import Points from "./components/admin/Points";
+import News from "./components/admin/News";
+import Games from "./components/admin/Games";
+import Products from "./components/admin/Products";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -50,6 +53,9 @@ encryptData({
         <Route element={<AdminRoutes />}>
           <Route path="/dashboard" element={<AdminHome path="Home"/>} />
           <Route path="/points" element={<Points />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/games" element={<Games />} />
+          <Route path="/products" element={<Products />} />
         </Route>
         <Route path="/" element={<Standings />} />
         <Route path="/fixtures" element={<Fixtures />} />
