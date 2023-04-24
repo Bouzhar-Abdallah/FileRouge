@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ArticlesController;
 use App\Http\Controllers\api\ClubsController;
 use App\Http\Controllers\api\CompetitionController;
 use App\Http\Controllers\api\GameController;
@@ -68,6 +69,7 @@ Route::middleware(['auth:api', 'role:admin'])->group(function () {
 
     Route::get('events', [PointsController::class, 'getEventsPoints']);
     Route::post('updatePostePoint', [PointsController::class, 'updatePostePoint']);
+    Route::get('articles', [ArticlesController::class, 'articles']);
 });
 
 

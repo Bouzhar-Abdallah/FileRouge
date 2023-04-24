@@ -44,7 +44,8 @@ export const updatePostePoint = createAsyncThunk("updatePostePoint", async (args
 export const pointsSlice = createSlice({
     name: "points",
     initialState,
-    reducers: {},
+    reducers: {
+    },
     extraReducers: (builder) => {
         builder
         .addCase(getEvents.pending, (state, action) => {
@@ -72,5 +73,7 @@ export const pointsSlice = createSlice({
         });
     }
 });
+
+
 
 export default pointsSlice.reducer;

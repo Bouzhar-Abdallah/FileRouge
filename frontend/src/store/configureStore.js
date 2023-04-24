@@ -9,6 +9,7 @@ import clubsReducer from '../features/clubs/clubsSlice';
 import competitionReducer from '../features/fantazy/competitionSlice';
 import selectionReducer from '../features/fantazy/selectionSlice';
 import pointsReducer from '../features/AdminPoints/adminPointsSlice';
+import articlesReducer from '../features/AdminNews/adminNewsSlice';
 const store = configureStore({
   reducer: {
     fixtures: fixturesReducer,
@@ -20,6 +21,7 @@ const store = configureStore({
     competition: competitionReducer,
     selection: selectionReducer,
     points: pointsReducer,
+    articles: articlesReducer,
   },
 });
 

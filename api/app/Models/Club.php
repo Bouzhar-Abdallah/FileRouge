@@ -17,4 +17,7 @@ class Club extends Model
     public function Standing(){
         return $this->hasOne(Standing::class);
     }
+    public function Articles(){
+        return $this->belongsToMany(Article::class);
+    }
 }

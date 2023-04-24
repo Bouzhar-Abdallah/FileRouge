@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             UserSelectionSeeder::class,
             SelectedPlayersSeeder::class,
             //GamePlayerEventSeeder::class,
+            ArticleSeeder::class,
         ]);
     }
 }

@@ -59,3 +59,9 @@ export const getRandomSquad = (players) => {
 
   return [...goalkeepers, ...defenders, ...midfielders, ...forwards];
 };
+
+// covert create_at date to a readable format
+export const formatDate = (date) => {
+  const d = new Date(date);
+  return d.toLocaleDateString();
+}
