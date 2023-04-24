@@ -13,13 +13,12 @@ const initialState = {
 };
 
 export const getArticles = createAsyncThunk("articles", async () => {
-  const creds = decryptData();
-  const token = creds.token;
+  /* const creds = decryptData();
+  const token = creds.token; */
 
   const response = await axios.get(baseURL + "articles", {
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
     },
   });
   const data = await response.data;

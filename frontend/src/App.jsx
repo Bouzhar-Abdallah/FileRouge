@@ -21,6 +21,7 @@ import Points from "./components/admin/Points";
 import News from "./components/admin/News";
 import Games from "./components/admin/Games";
 import Products from "./components/admin/Products";
+import UserNews from "./features/news/UserNews";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -61,6 +62,8 @@ encryptData({
         <Route path="/fixtures" element={<Fixtures />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/actualites" element={<UserNews/>} />
+        
       </Routes>
       <ToastContainer />
     </div>

@@ -60,6 +60,7 @@ Route::get('squad', [SquadController::class, 'squad']);
 Route::post('saveNewSquad', [SquadController::class, 'saveNewSquad']);
 Route::get('getLogos', [SquadController::class, 'getLogos']); */
 
+Route::get('articles', [ArticlesController::class, 'articles']);
 
 // Routes that require the 'admin' role
 Route::middleware(['auth:api', 'role:admin'])->group(function () {
@@ -69,7 +70,7 @@ Route::middleware(['auth:api', 'role:admin'])->group(function () {
 
     Route::get('events', [PointsController::class, 'getEventsPoints']);
     Route::post('updatePostePoint', [PointsController::class, 'updatePostePoint']);
-    Route::get('articles', [ArticlesController::class, 'articles']);
+    
 });
 
 
