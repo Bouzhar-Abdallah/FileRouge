@@ -4,6 +4,7 @@ use App\Http\Controllers\api\ClubsController;
 use App\Http\Controllers\api\CompetitionController;
 use App\Http\Controllers\api\GameController;
 use App\Http\Controllers\api\PlayerController;
+use App\Http\Controllers\api\PointsController;
 use App\Http\Controllers\api\SquadController;
 use App\Http\Controllers\api\StandingsController;
 use App\Http\Controllers\AuthController;
@@ -64,6 +65,9 @@ Route::middleware(['auth:api', 'role:admin'])->group(function () {
     Route::get('admin', function () {
         return response()->json(['message' => 'Admin']);
     });
+
+    Route::get('events', [PointsController::class, 'getEventsPoints']);
+    Route::post('updatePostePoint', [PointsController::class, 'updatePostePoint']);
 });
 
 

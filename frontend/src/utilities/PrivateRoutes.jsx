@@ -9,9 +9,10 @@ const PrivateRoutes = () => {
   const navigate = useNavigate();
   const creds = decryptData();
   const token = creds.token;
-
+  const user = creds.user;
   const checkLogin = async () => {
-    if (!token) {
+    console.log('here')
+    if (!token || user.role.name != "user") {
       navigate("/login");
     }
     try {

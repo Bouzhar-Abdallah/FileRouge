@@ -6,18 +6,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutRequest } from "../features/login/loginSlice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { decryptData } from "../utilities/functions";
 export default function NavbarComp() {
   const navigate = useNavigate();
-  const { user, isLoggedIn, didLogout } = useSelector(
-    (state) => state.login
-  );
-  /* console.log('user', user)
-  console.log('role', role) */
+  const { user, isLoggedIn, didLogout } = useSelector((state) => state.login);
+  const creds = decryptData();
+
+  let role;
+  if (!creds.user) {
+    role = "guest";
+  } else {
+    role = creds?.user.role.name;
+  }
+
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutRequest());
   };
-  
+
   useEffect(() => {
     if (!isLoggedIn && didLogout) {
       navigate("/");
@@ -39,7 +45,7 @@ export default function NavbarComp() {
       <div className="flex md:order-2 hid">
         {isLoggedIn && (
           <Dropdown
-          className="bg-[#0B2545]"
+            className="bg-[#0B2545]"
             arrowIcon={false}
             inline={true}
             label={
@@ -65,7 +71,7 @@ export default function NavbarComp() {
               <span className="block truncate text-sm font-medium text-white">
                 {user.name}
               </span>
-            </Dropdown.Header >
+            </Dropdown.Header>
             <Dropdown.Item className="text-white">
               <Link to="fantazy">Fantazy</Link>
             </Dropdown.Item>
@@ -89,15 +95,27 @@ export default function NavbarComp() {
         <Navbar.Link className="text-white" href="/fixtures" active={false}>
           Fixtures
         </Navbar.Link>
-        <Navbar.Link className="text-white" href="/signup" active={false}>
-          Signup
-        </Navbar.Link>
-        <Navbar.Link className="text-white" href="/login" active={false}>
-          Login
-        </Navbar.Link>
-        <Navbar.Link className="text-white" href="/fantazy" active={false}>
-          Fantazy
-        </Navbar.Link>
+        {role === "guest" && (
+          <>
+            <Navbar.Link className="text-white" href="/signup" active={false}>
+              Signup
+            </Navbar.Link>
+            <Navbar.Link className="text-white" href="/login" active={false}>
+              Login
+            </Navbar.Link>
+          </>
+        )}
+        {role === "admin" && (
+          <Navbar.Link className="text-white" href="/dashboard" active={false}>
+            Dashboard
+          </Navbar.Link>
+        )}
+
+        {role === "user" && (
+          <Navbar.Link className="text-white" href="/fantazy" active={false}>
+            Fantazy
+          </Navbar.Link>
+        )}
 
         {/* <Link to="signup">signup</Link>
         <Link to="login">Login</Link>

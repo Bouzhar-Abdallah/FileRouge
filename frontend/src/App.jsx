@@ -16,6 +16,8 @@ import { decryptData, encryptData } from "./utilities/functions";
 import { getClubs } from "./features/clubs/clubsSlice";
 import Selection from "./components/fantazy/Selection";
 import Competition from "./components/fantazy/Competition";
+import AdminHome from "./components/admin/AdminHome";
+import Points from "./components/admin/Points";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -46,8 +48,8 @@ encryptData({
           <Route path="/competition" element={<Competition path="Competition" />} />
         </Route>
         <Route element={<AdminRoutes />}>
-          <Route path="/admin" element={<div>Admin</div>} />
-        
+          <Route path="/dashboard" element={<AdminHome path="Home"/>} />
+          <Route path="/points" element={<Points />} />
         </Route>
         <Route path="/" element={<Standings />} />
         <Route path="/fixtures" element={<Fixtures />} />

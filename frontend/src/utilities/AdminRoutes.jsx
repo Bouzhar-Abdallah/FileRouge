@@ -9,9 +9,10 @@ const AdminRoutes = () => {
   const navigate = useNavigate();
   const creds = decryptData();
   const token = creds.token;
-
+    const user = creds.user;
+    
   const checkLogin = async () => {
-    if (!token) {
+    if (!token || user.role.name != "admin") {
       navigate("/login");
     }
     try {
@@ -23,7 +24,7 @@ const AdminRoutes = () => {
         });
   
         const data = await response.data;
-        console.log("data", data.user.role.name);
+        
         if(data.user.role.name != "admin"){
             navigate('/login');
         }
