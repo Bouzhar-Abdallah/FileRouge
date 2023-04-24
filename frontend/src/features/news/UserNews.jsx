@@ -70,7 +70,7 @@ export default function UserNews() {
                   </h3>
                   <p className="font-light mt-2">{article.content}</p>
                 </div>
-                <div className="flex mt-auto">
+                <div className="flex mt-3">
                   {article.clubs.map((club, index) => (
                     <span
                       style={{

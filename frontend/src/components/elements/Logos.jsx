@@ -7,7 +7,7 @@ export default function Logos() {
   const dispatch = useDispatch();
   return (
     <Card>
-      <div className="grid grid-cols-3 md:grid-cols-4 gap-4 h-80 overflow-scroll">
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-4 h-80 overflow-scroll">
         {logos.map((logo) => (
           <button 
           onClick={() => dispatch(setLogo(logo))}

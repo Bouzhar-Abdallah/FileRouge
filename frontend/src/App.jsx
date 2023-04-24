@@ -22,6 +22,7 @@ import News from "./components/admin/News";
 import Games from "./components/admin/Games";
 import Products from "./components/admin/Products";
 import UserNews from "./features/news/UserNews";
+import LandingPage from "./components/LandingPage";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -58,7 +59,8 @@ encryptData({
           <Route path="/games" element={<Games />} />
           <Route path="/products" element={<Products />} />
         </Route>
-        <Route path="/" element={<Standings />} />
+        <Route path="/" element={<LandingPage />} />
+        
         <Route path="/fixtures" element={<Fixtures />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />

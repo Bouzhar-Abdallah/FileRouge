@@ -23,7 +23,11 @@ export const fixturesSlice = createSlice({
         builder
         .addCase(getFixtures.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.weeks = action.payload;
+            //state.weeks = action.payload;
+            
+            const weeks = action.payload;
+            state.weeks= weeks.filter((week) => week.games.length > 0);
+              
         })
         .addCase(getFixtures.pending, (state, action) => {
             state.isLoading = true;
