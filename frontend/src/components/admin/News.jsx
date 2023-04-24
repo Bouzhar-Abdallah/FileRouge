@@ -8,9 +8,12 @@ import Loading from "../Loading";
 import { formatDate } from "../../utilities/functions";
 import { useState } from "react";
 import { filterArticles } from "../../features/AdminNews/adminNewsSlice";
+import { setUpdateArticle } from "../../features/AdminNews/adminNewsSlice";
+import ArticleModal from "../elements/ArticleModal";
 
 
 export default function News() {
+  const [showModal, setShowModal] = useState(false);
   const { clubs, isLoading } = useSelector((state) => state.clubs);
   const { isLoading: isArticlesLoading, filteredArticles: articles, isLoaded } = useSelector((state) => state.articles);
   const dispatch = useDispatch();
@@ -30,6 +33,7 @@ export default function News() {
   return (
     <div>
       <AdminHeader path="News" />
+      <ArticleModal showModal={showModal}/>
       <div className="m-5 flex ">
         <div className="">
           {clubs.map((club, index) => (
@@ -51,7 +55,12 @@ export default function News() {
                 
                 {articles.map((article, index) => (
 
-                <div key={index}
+                <button
+                onClick={() => {
+                  dispatch(setUpdateArticle(article));
+                  setShowModal(true);
+                }}
+                key={index}
                   className="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900"
                 >
                   <img
@@ -60,17 +69,17 @@ export default function News() {
                     src={article.cover_url}
                   />
                   <div className="p-2 space-y-2">
-                    <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
+                    <h3 className="text-md font-normal group-hover:underline group-focus:underline">
                       {article.title}
                     </h3>
                     <span className="text-xs dark:text-gray-400">
                       {formatDate(article.created_at)}
                     </span>
-                    <p>
+                    <p className="hidden">
                       {article.content}
                     </p>
                   </div>
-                </div>
+                </button>
                 ))}
           
               </div>

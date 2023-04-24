@@ -9,6 +9,7 @@ const initialState = {
   isLoaded: false,
   articles: [],
   filteredArticles: [],
+  updatingArticle: null,
 };
 
 export const getArticles = createAsyncThunk("articles", async () => {
@@ -56,7 +57,11 @@ export const articlesSlice = createSlice({
 
       state.filteredArticles = filteredArticles;
     },
-    
+    setUpdateArticle: (state, action) => {
+      const article = action.payload;
+      state.updatingArticle = article;
+    }
+
   },
   extraReducers: (builder) => {
     builder
@@ -87,6 +92,6 @@ export const articlesSlice = createSlice({
   },
 });
 
-export const { filterArticles } = articlesSlice.actions;
+export const { filterArticles, setUpdateArticle } = articlesSlice.actions;
 
 export default articlesSlice.reducer;
