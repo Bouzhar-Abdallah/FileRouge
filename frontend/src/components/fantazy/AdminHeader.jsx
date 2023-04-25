@@ -59,13 +59,13 @@ export default function AdminHeader({path}) {
               </Link>
             )}
             {path === "Products" ? (
-              <button className="mx-1 rounded-lg rounded-b-none bg-darkGray px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50">
+              <button className="hidden mx-1 rounded-lg rounded-b-none bg-darkGray px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50">
                 Products
               </button>
             ) : (
               <Link
                 to="/products"
-                className="mx-1 rounded-lg rounded-b-none hover:bg-white bg-lightBlue px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50"
+                className="hidden mx-1 rounded-lg rounded-b-none hover:bg-white bg-lightBlue px-5 py-1 text-base font-medium text-white hover:text-darkBlue transition duration-200 hover:shadow-lg hover:shadow-blueSecondary/50"
               >
                 Products
               </Link>
